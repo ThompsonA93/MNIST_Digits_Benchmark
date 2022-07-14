@@ -1,0 +1,17 @@
+name: Python3 CI
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  python3:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Program setup
+      run: |
+        ./INSTALL.sh
+    - name: Program execution
+      run: |
+        python3 app.py
