@@ -5,6 +5,7 @@
 | Python           | 3.8.10 |
 | PIP              | pip 22.1.2 |
 
+[![Python3 CI](https://github.com/ThompsonA93/MNIST_Digits_SKLearn/actions/workflows/python-ci.yml/badge.svg)](https://github.com/ThompsonA93/MNIST_Digits_SKLearn/actions/workflows/python-ci.yml)
 
 ## Setup
 
