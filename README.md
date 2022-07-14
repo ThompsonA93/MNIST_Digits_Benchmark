@@ -17,11 +17,5 @@ Refer to Install.sh. If running on an UNIX-Operating system, run
 
 ## Execution
 Run
-> jupyter notebook
+> ./RUN.sh
 
-.. and visit the URL linked with Jupyter or alternatively run
-
-> python3 Keras.py\
-> python3 SKLearn.py
-
-.. for executing the supplied python-files.
