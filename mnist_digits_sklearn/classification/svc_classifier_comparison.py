@@ -9,6 +9,7 @@ def print_to_txt_file(*s):
     with open(txt_out_file_path, 'a') as f:
         for arg in s:
             print(arg, file=f)
+            print(arg)
 
 def run_svc_classifier_comparison(_X_train, _y_train):
     tuned_parameters = [
@@ -31,7 +32,7 @@ def run_svc_classifier_comparison(_X_train, _y_train):
         print_to_txt_file("\tSupport Vector: %s" % clf.best_estimator_)
         print_to_txt_file("\tSupport Vector Parametrization: %s" % clf.best_params_)
         print_to_txt_file("\tAsserted Score: %s" % clf.best_score_)
-        print_to_txt_file("\tTotal Score \t\t\t Configurations")
+        print_to_txt_file("Total Score \t\t Configurations")
 
         means = clf.cv_results_["mean_test_score"]
         stds = clf.cv_results_["std_test_score"]
