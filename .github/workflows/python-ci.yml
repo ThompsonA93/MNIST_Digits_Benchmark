@@ -11,7 +11,9 @@ jobs:
     - uses: actions/checkout@v2
     - name: Program setup
       run: |
+        cd python3
         ./INSTALL.sh
     - name: Program execution
       run: |
+        cd python3
         ./RUN.sh

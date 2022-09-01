@@ -13,8 +13,8 @@ def logModel(s):
         print(s, file=f)
 
     
-def start_keras_app(x_train, y_train, x_test, y_test):
-    print("+-+-+-+-+ Executing Keras implementation +-+-+-+-+")
+def run_keras_neurnet(x_train, y_train, x_test, y_test):
+    print("+-+-+-+-+ Executing Keras Neural Net implementation +-+-+-+-+")
 
     input = keras.Input(shape=(784,), name='digits')
     x = layers.Dense(64, activation='relu', name='dense_1')(input)
