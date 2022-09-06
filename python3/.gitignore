@@ -1,8 +1,0 @@
-# Python
-.ipynb_checkpoints
-__pycache__
-
-# out-files
-*-log.txt
-*-log.csv
-.Rproj.user

@@ -1,0 +1,21 @@
+--- [2022-09-06 13:53:19.715170] Running Parameter-Tests ---
+Tuning parameters for criteria [precision]
+Best parameters set found on following development set:
+	Support Vector: SVC(C=10)
+	Support Vector Parametrization: {'C': 10, 'kernel': 'rbf'}
+	Asserted Score: 0.9700447287666876
+Total Score 		 Configurations
+0.914 (+/-0.009)	{'C': 1, 'kernel': 'linear'}
+
+0.957 (+/-0.005)	{'C': 1, 'kernel': 'poly'}
+
+0.964 (+/-0.005)	{'C': 1, 'kernel': 'rbf'}
+
+0.908 (+/-0.009)	{'C': 10, 'kernel': 'linear'}
+
+0.962 (+/-0.006)	{'C': 10, 'kernel': 'poly'}
+
+0.970 (+/-0.004)	{'C': 10, 'kernel': 'rbf'}
+
+--- [2022-09-06 14:02:47.616524] Running Parameter-Tests ---
+Tuning parameters for criteria [recall]
