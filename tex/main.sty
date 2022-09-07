@@ -2,6 +2,7 @@
 \usepackage{graphicx}                   %% Graphics
 \usepackage{url}                        %% URLs
 \usepackage{color, colortbl, xcolor}    %% Colours
+\usepackage{import}                     %% Import environment - Vital for Builder-File
 
 \usepackage{float}                      %% Enforce Placement via [H]
 \usepackage{caption}
@@ -16,3 +17,7 @@
   citecolor={blue!50!black},
   urlcolor={blue!80!black}
 }
+
+\usepackage{titlesec}
+\titleformat{\chapter}[hang] 
+{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter:}{1em}{} 
