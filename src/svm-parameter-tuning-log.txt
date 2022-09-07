@@ -1,4 +1,6 @@
---- [2022-09-06 13:53:19.715170] Running Parameter-Tests ---
+--- [2022-09-07 12:25:01.916952] Running Parameter-Tests ---
+Tuning parameters for criteria [precision]
+--- [2022-09-07 13:01:17.203595] Running Parameter-Tests ---
 Tuning parameters for criteria [precision]
 Best parameters set found on following development set:
 	Support Vector: SVC(C=10)
@@ -17,7 +19,7 @@ Total Score 		 Configurations
 
 0.970 (+/-0.004)	{'C': 10, 'kernel': 'rbf'}
 
---- [2022-09-06 14:02:47.616524] Running Parameter-Tests ---
+--- [2022-09-07 13:08:33.777598] Running Parameter-Tests ---
 Tuning parameters for criteria [recall]
 Best parameters set found on following development set:
 	Support Vector: SVC(C=10)
@@ -36,7 +38,3 @@ Total Score 		 Configurations
 
 0.970 (+/-0.004)	{'C': 10, 'kernel': 'rbf'}
 
---- [2022-09-06 14:21:27.980982] Running Parameter-Tests ---
-Tuning parameters for criteria [precision]
---- [2022-09-06 14:21:51.411710] Running Parameter-Tests ---
-Tuning parameters for criteria [precision]
