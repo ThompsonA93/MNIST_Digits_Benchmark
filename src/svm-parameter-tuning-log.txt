@@ -1,40 +1,4 @@
---- [2022-09-07 12:25:01.916952] Running Parameter-Tests ---
-Tuning parameters for criteria [precision]
---- [2022-09-07 13:01:17.203595] Running Parameter-Tests ---
-Tuning parameters for criteria [precision]
-Best parameters set found on following development set:
-	Support Vector: SVC(C=10)
-	Support Vector Parametrization: {'C': 10, 'kernel': 'rbf'}
-	Asserted Score: 0.9700447287666876
-Total Score 		 Configurations
-0.914 (+/-0.009)	{'C': 1, 'kernel': 'linear'}
-
-0.957 (+/-0.005)	{'C': 1, 'kernel': 'poly'}
-
-0.964 (+/-0.005)	{'C': 1, 'kernel': 'rbf'}
-
-0.908 (+/-0.009)	{'C': 10, 'kernel': 'linear'}
-
-0.962 (+/-0.006)	{'C': 10, 'kernel': 'poly'}
-
-0.970 (+/-0.004)	{'C': 10, 'kernel': 'rbf'}
-
---- [2022-09-07 13:08:33.777598] Running Parameter-Tests ---
-Tuning parameters for criteria [recall]
-Best parameters set found on following development set:
-	Support Vector: SVC(C=10)
-	Support Vector Parametrization: {'C': 10, 'kernel': 'rbf'}
-	Asserted Score: 0.9697865087619038
-Total Score 		 Configurations
-0.913 (+/-0.009)	{'C': 1, 'kernel': 'linear'}
-
-0.956 (+/-0.005)	{'C': 1, 'kernel': 'poly'}
-
-0.964 (+/-0.005)	{'C': 1, 'kernel': 'rbf'}
-
-0.906 (+/-0.009)	{'C': 10, 'kernel': 'linear'}
-
-0.961 (+/-0.006)	{'C': 10, 'kernel': 'poly'}
-
-0.970 (+/-0.004)	{'C': 10, 'kernel': 'rbf'}
-
+--- [2022-09-08 13:17:27.729794] Running Parameter-Tests [LINEAR-SVC] ---
+Tuning parameters for criteria [accuracy]
+--- [2022-09-08 13:21:31.402676] Running Parameter-Tests [LINEAR-SVC] ---
+Tuning parameters for criteria [accuracy]
