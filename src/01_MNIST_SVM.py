@@ -1,26 +1,16 @@
 ### Packages
 from datetime import datetime
+import time
 
-import sys
-
-import numpy as np
 import matplotlib.pyplot as plt
 #%matplotlib inline
 
 import keras
-from keras.models import Sequential
-from keras.layers import Dense, Dropout
 from keras.datasets import mnist
 
 from sklearn.svm import SVC
 from sklearn.model_selection import GridSearchCV
-from sklearn.decomposition import PCA
 from sklearn.metrics import classification_report
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import confusion_matrix
-
-import seaborn as sns
-
 
 ### Configurations
 # Training-Size
@@ -28,28 +18,36 @@ num_train = 15000                   # 60000 for full data set
 num_test  = 2500                    # 10000 for full data set
 
 # Use GridSearchCV to look up optimal parameters (see below)
-hyper_parameter_search = True       # True/False: Run hyper-parameter search via GridSearchCV. Takes a long time.
+hyper_parameter_search = False       # True/False: Run hyper-parameter search via GridSearchCV. Takes a long time.
 
 
 # Simple function to log information
-txt_out_file_path = 'svm-parameter-tuning-log.txt'
-def print_to_txt_file(*s):
-    with open(txt_out_file_path, 'a') as f:
+training_results = 'svm-training-log.txt'
+def log_training_results(*s):
+    with open(training_results, 'a') as f:
         for arg in s:
             print(arg, file=f)
             print(arg)
+
+
+hyperparameter_search_log = 'svm-hyperparameter-tuning-log.txt'
+def log_hyperparameter_search(*s):
+    with open(hyperparameter_search_log, 'a') as f:
+        for arg in s:
+            print(arg, file=f)
+            print(arg)
+
 
 # Fetch MNIST-Data from Keras repository
 (X_train, y_train), (X_test, y_test) = mnist.load_data()
 
 # Display (Train) (Test) datasets
-print("Data : Dataset Trainingset")
-print(X_train.shape, X_test.shape)
-print("Labels : Dataset Trainingset")
-print(y_train.shape, y_test.shape)
+print("Shape of training data:\t\t", X_train.shape)
+print("Shape of training labels:\t", y_train.shape)
+print("Shape of testing data:\t\t", X_test.shape)
+print("Shape of testing labels:\t", y_test.shape)
 
 # i.e.: We have 60000 images with a size of 28x28 pixels
-
 # Visualize some examples
 num_classes = 10 # 0 .. 9
 f, ax = plt.subplots(1, num_classes, figsize=(20,20))
@@ -81,10 +79,11 @@ test_data = test_data[1:num_test,]
 test_label = test_label[1:num_test]
 
 # Display (Train) (Test) datasets
-print("Reshaped Data : Dataset Trainingset")
-print(train_data.shape, test_data.shape)
-print("Reshaped Labels : Dataset Trainingset")
-print(train_label.shape, test_label.shape)
+
+print("Reshaped training data:\t\t", train_data.shape)
+print("Reshaped training labels:\t", train_label.shape)
+print("Reshaped testing data:\t\t", test_data.shape)
+print("Reshaped testing labels:\t", test_label.shape)
 
 # As we can see: We now have X images with 784 pixels in total
 # We now operate on this data
@@ -109,6 +108,7 @@ svm = SVC(
     random_state=None               # Controls the pseudo random number generation for shuffling the data for probability estimates.
 )
 
+
 # Evalute SVM.SVC with parameters on data below
 svm = SVC(
     C=1.0, 
@@ -127,18 +127,34 @@ svm = SVC(
     break_ties=False, 
     random_state=None    
 )
+
+start_time = time.time()
 svm.fit(train_data, train_label)
-print("Mean accuracy on train data: ", svm.score(train_data, train_label))   # Mean Accuracy on the given training data and labels
-print("Mean accuracy on test data: ", svm.score(test_data, test_label))      # Mean Accuracy on the given test data and labels
+end_time = time.time() - start_time
+log_training_results("[%s] Trained new model: {'Kernel':'%s'} in %s seconds" % (datetime.now(), svm.get_params()["kernel"], end_time))
+
+start_time = time.time()
+score = svm.score(train_data, train_label)
+end_time = time.time() - start_time
+log_training_results("\tScore data on [%s] -- mean accuracy on train-data: %s; execution time: %ss" % (svm.get_params()["kernel"], score, end_time))  
+
+
+start_time = time.time()
+score = svm.score(test_data, test_label)
+end_time = time.time() - start_time
+log_training_results("\tScore data on [%s] -- mean accuracy on test-data: %s; execution time: %ss" % (svm.get_params()["kernel"], score, end_time))  
+
+
 # Hyperparameter search -- Takes up a long time.
 if hyper_parameter_search:
     svm = SVC()
     parameters = {
             "kernel":["linear"], 
-            "C":[1,10,100],                
-            "shrinking":[True,False],      
-            "probability":[True,False], 
-            "tol":[0.01,0.001,0.0001],
+            "C":[1,10,100],            
+            "gamma":[0.01,0.005,0.001,0.0005,0.0001],        
+            #"shrinking":[True,False],      
+            #"probability":[True,False], 
+            #"tol":[0.01,0.001,0.0001],
     }
     scores = [
         'accuracy',
@@ -146,25 +162,25 @@ if hyper_parameter_search:
         #"recall",       # The recall is intuitively the ability of the classifier to find all the positive samples.
         ]
     for score in scores:
-        print_to_txt_file("--- [%s] Running Parameter-Tests [LINEAR-SVC] ---" % datetime.now())
-        print_to_txt_file("Tuning parameters for criteria [%s]" % score)
+        log_hyperparameter_search("--- [%s] Running Parameter-Tests [LINEAR-SVC] ---" % datetime.now())
+        log_hyperparameter_search("Tuning parameters for criteria [%s]" % score)
         # FIXME: Doesn't take accuracy as score for some reason. Refer to line below for accuracy score
         #grid = GridSearchCV(estimator=svm, param_grid=parameters, scoring="%s_macro" % score, verbose=3)
-        grid = GridSearchCV(estimator=svm, param_grid=parameters, scoring='accuracy', verbose=3)
+        grid = GridSearchCV(estimator=svm, param_grid=parameters, scoring='accuracy', verbose=3, n_jobs=-1)
         grid.fit(train_data, train_label)
 
-        print_to_txt_file("Best parameters set found on following development set:")
-        print_to_txt_file("\tSupport Vector: %s" % grid.best_estimator_)
-        print_to_txt_file("\tSupport Vector Parametrization: %s" % grid.best_params_)
-        print_to_txt_file("\tAsserted Score: %s" % grid.best_score_)
-        print_to_txt_file("Total Score \t\t Configurations")
+        log_hyperparameter_search("Best parameters set found on following development set:")
+        log_hyperparameter_search("\tSupport Vector: %s" % grid.best_estimator_)
+        log_hyperparameter_search("\tSupport Vector Parametrization: %s" % grid.best_params_)
+        log_hyperparameter_search("\tAsserted Score: %s" % grid.best_score_)
+        log_hyperparameter_search("Total Score \t\t Configurations")
 
         means = grid.cv_results_["mean_test_score"]
         stds = grid.cv_results_["std_test_score"]
         params = grid.cv_results_["params"]
         for mean, std, params in zip(means, stds, params):
-            print_to_txt_file("%0.3f (+/-%0.03f)\t%r" % (mean, std, params))
-        print("Wrote classifier comparisons to file ", txt_out_file_path)
+            log_hyperparameter_search("%0.3f (+/-%0.03f)\t%r" % (mean, std, params))
+        print("Wrote classifier comparisons to file ", hyperparameter_search_log)
 
         print("Detailed classification report:")
         print("The model is trained on the full development set.")
@@ -173,8 +189,6 @@ if hyper_parameter_search:
         y_true, y_pred = test_label, grid.predict(test_data)
         print(classification_report(y_true, y_pred))
         print()
-
-
 
 # Eval SVM on Training Data
 svm = SVC(
@@ -194,22 +208,37 @@ svm = SVC(
     break_ties=False, 
     random_state=None    
 )
+
+
+start_time = time.time()
 svm.fit(train_data, train_label)
-print("Mean accuracy on train data: ", svm.score(train_data, train_label))   # Mean Accuracy on the given training data and labels
-print("Mean accuracy on test data: ", svm.score(test_data, test_label))      # Mean Accuracy on the given test data and labels
+end_time = time.time() - start_time
+log_training_results("[%s] Trained new model: {'Kernel':'%s'} in %s seconds" % (datetime.now(), svm.get_params()["kernel"], end_time))
+
+start_time = time.time()
+score = svm.score(train_data, train_label)
+end_time = time.time() - start_time
+log_training_results("\tScore data on [%s] -- mean accuracy on train-data: %s; execution time: %ss" % (svm.get_params()["kernel"], score, end_time))  
+
+
+start_time = time.time()
+score = svm.score(test_data, test_label)
+end_time = time.time() - start_time
+log_training_results("\tScore data on [%s] -- mean accuracy on test-data: %s; execution time: %ss" % (svm.get_params()["kernel"], score, end_time))  
+
 
 # Hyperparameter search -- Takes up a long time.
 if hyper_parameter_search:
     svm = SVC()
     parameters = {
             "kernel":["poly"], 
-            "C":[1,10,100],
-            "gamma":["scale", "auto"],
-            "coef0":[0.0, 0.5],
-            "degree":[3,5,10],                
-            "shrinking":[True,False],      
-            "probability":[True,False], 
-            "tol":[0.01,0.001,0.0001],
+            "C":[1,10,50,100],            
+            "gamma":[0.01,0.005,0.001,0.0005,0.0001],        
+            #"coef0":[0.0, 0.5],
+            #"degree":[3,5,10],                
+            #"shrinking":[True,False],      
+            #"probability":[True,False], 
+            #"tol":[0.01,0.001,0.0001],
     }
     scores = [
         "accuracy",
@@ -217,25 +246,25 @@ if hyper_parameter_search:
         #"recall",       # The recall is intuitively the ability of the classifier to find all the positive samples.
         ]
     for score in scores:
-        print_to_txt_file("--- [%s] Running Parameter-Tests [POLY-SVC] ---" % datetime.now())
-        print_to_txt_file("Tuning parameters for criteria [%s]" % score)
+        log_hyperparameter_search("--- [%s] Running Parameter-Tests [POLY-SVC] ---" % datetime.now())
+        log_hyperparameter_search("Tuning parameters for criteria [%s]" % score)
         # FIXME: Doesn't take accuracy as score for some reason. Refer to line below for accuracy score
         #grid = GridSearchCV(estimator=svm, param_grid=parameters, scoring="%s_macro" % score, verbose=3)
-        grid = GridSearchCV(estimator=svm, param_grid=parameters, scoring='accuracy', verbose=3)
+        grid = GridSearchCV(estimator=svm, param_grid=parameters, scoring='accuracy', verbose=3, n_jobs=-1)
         grid.fit(train_data, train_label)
 
-        print_to_txt_file("Best parameters set found on following development set:")
-        print_to_txt_file("\tSupport Vector: %s" % grid.best_estimator_)
-        print_to_txt_file("\tSupport Vector Parametrization: %s" % grid.best_params_)
-        print_to_txt_file("\tAsserted Score: %s" % grid.best_score_)
-        print_to_txt_file("Total Score \t\t Configurations")
+        log_hyperparameter_search("Best parameters set found on following development set:")
+        log_hyperparameter_search("\tSupport Vector: %s" % grid.best_estimator_)
+        log_hyperparameter_search("\tSupport Vector Parametrization: %s" % grid.best_params_)
+        log_hyperparameter_search("\tAsserted Score: %s" % grid.best_score_)
+        log_hyperparameter_search("Total Score \t\t Configurations")
 
         means = grid.cv_results_["mean_test_score"]
         stds = grid.cv_results_["std_test_score"]
         params = grid.cv_results_["params"]
         for mean, std, params in zip(means, stds, params):
-            print_to_txt_file("%0.3f (+/-%0.03f)\t%r" % (mean, std, params))
-        print("Wrote classifier comparisons to file ", txt_out_file_path)
+            log_hyperparameter_search("%0.3f (+/-%0.03f)\t%r" % (mean, std, params))
+        print("Wrote classifier comparisons to file ", hyperparameter_search_log)
 
         print("Detailed classification report:")
         print("The model is trained on the full development set.")
@@ -263,20 +292,34 @@ svm = SVC(
     break_ties=False, 
     random_state=None    
 )
+
+
+start_time = time.time()
 svm.fit(train_data, train_label)
-print("Mean accuracy on train data: ", svm.score(train_data, train_label))   # Mean Accuracy on the given training data and labels
-print("Mean accuracy on test data: ", svm.score(test_data, test_label))      # Mean Accuracy on the given test data and labels
+end_time = time.time() - start_time
+log_training_results("[%s] Trained new model: {'Kernel':'%s'} in %s seconds" % (datetime.now(), svm.get_params()["kernel"], end_time))
+
+start_time = time.time()
+score = svm.score(train_data, train_label)
+end_time = time.time() - start_time
+log_training_results("\tScore data on [%s] -- mean accuracy on train-data: %s; execution time: %ss" % (svm.get_params()["kernel"], score, end_time))  
+
+
+start_time = time.time()
+score = svm.score(test_data, test_label)
+end_time = time.time() - start_time
+log_training_results("\tScore data on [%s] -- mean accuracy on test-data: %s; execution time: %ss" % (svm.get_params()["kernel"], score, end_time))  
 
 # Hyperparameter search -- Takes up a long time.
 if hyper_parameter_search:
     svm = SVC()
     parameters = {
             "kernel":["rbf"], 
-            "C":[1,10,100],           
-            "gamma":["scale", "auto"],     
-            "shrinking":[True,False],      
-            "probability":[True,False], 
-            "tol":[0.01,0.001,0.0001],
+            "C":[1,10,50,100],            
+            "gamma":[0.01,0.005,0.001,0.0005,0.0001],        
+            #"shrinking":[True,False],      
+            #"probability":[True,False], 
+            #"tol":[0.01,0.001,0.0001],
     }
     scores = [
         "accuracy",
@@ -284,25 +327,25 @@ if hyper_parameter_search:
         #"recall",       # The recall is intuitively the ability of the classifier to find all the positive samples.
         ]
     for score in scores:
-        print_to_txt_file("--- [%s] Running Parameter-Tests [RBF-SVC] ---" % datetime.now())
-        print_to_txt_file("Tuning parameters for criteria [%s]" % score)
+        log_hyperparameter_search("--- [%s] Running Parameter-Tests [RBF-SVC] ---" % datetime.now())
+        log_hyperparameter_search("Tuning parameters for criteria [%s]" % score)
         # FIXME: Doesn't take accuracy as score for some reason. Refer to line below for accuracy score
         #grid = GridSearchCV(estimator=svm, param_grid=parameters, scoring="%s_macro" % score, verbose=3)
-        grid = GridSearchCV(estimator=svm, param_grid=parameters, scoring='accuracy', verbose=3)
+        grid = GridSearchCV(estimator=svm, param_grid=parameters, scoring='accuracy', verbose=3, n_jobs=-1)
         grid.fit(train_data, train_label)
 
-        print_to_txt_file("Best parameters set found on following development set:")
-        print_to_txt_file("\tSupport Vector: %s" % grid.best_estimator_)
-        print_to_txt_file("\tSupport Vector Parametrization: %s" % grid.best_params_)
-        print_to_txt_file("\tAsserted Score: %s" % grid.best_score_)
-        print_to_txt_file("Total Score \t\t Configurations")
+        log_hyperparameter_search("Best parameters set found on following development set:")
+        log_hyperparameter_search("\tSupport Vector: %s" % grid.best_estimator_)
+        log_hyperparameter_search("\tSupport Vector Parametrization: %s" % grid.best_params_)
+        log_hyperparameter_search("\tAsserted Score: %s" % grid.best_score_)
+        log_hyperparameter_search("Total Score \t\t Configurations")
 
         means = grid.cv_results_["mean_test_score"]
         stds = grid.cv_results_["std_test_score"]
         params = grid.cv_results_["params"]
         for mean, std, params in zip(means, stds, params):
-            print_to_txt_file("%0.3f (+/-%0.03f)\t%r" % (mean, std, params))
-        print("Wrote classifier comparisons to file ", txt_out_file_path)
+            log_hyperparameter_search("%0.3f (+/-%0.03f)\t%r" % (mean, std, params))
+        print("Wrote classifier comparisons to file ", hyperparameter_search_log)
 
         print("Detailed classification report:")
         print("The model is trained on the full development set.")
@@ -311,6 +354,7 @@ if hyper_parameter_search:
         y_true, y_pred = test_label, grid.predict(test_data)
         print(classification_report(y_true, y_pred))
         print()
+
 
 # Eval SVM on Training Data
 svm = SVC(
@@ -330,20 +374,34 @@ svm = SVC(
     break_ties=False, 
     random_state=None    
 )
+
+start_time = time.time()
 svm.fit(train_data, train_label)
-print("Mean accuracy on train data: ", svm.score(train_data, train_label))   # Mean Accuracy on the given training data and labels
-print("Mean accuracy on test data: ", svm.score(test_data, test_label))      # Mean Accuracy on the given test data and labels
+end_time = time.time() - start_time
+log_training_results("[%s] Trained new model: {'Kernel':'%s'} in %s seconds" % (datetime.now(), svm.get_params()["kernel"], end_time))
+
+start_time = time.time()
+score = svm.score(train_data, train_label)
+end_time = time.time() - start_time
+log_training_results("\tScore data on [%s] -- mean accuracy on train-data: %s; execution time: %ss" % (svm.get_params()["kernel"], score, end_time))  
+
+
+start_time = time.time()
+score = svm.score(test_data, test_label)
+end_time = time.time() - start_time
+log_training_results("\tScore data on [%s] -- mean accuracy on test-data: %s; execution time: %ss" % (svm.get_params()["kernel"], score, end_time))  
+
 
 # Hyperparameter search -- Takes up a long time.
 if hyper_parameter_search:
     svm = SVC()
     parameters = {
             "kernel":["sigmoid"], 
-            "C":[1,10,100],            
-            "gamma":["scale", "auto"],    
-            "shrinking":[True,False],      
-            "probability":[True,False], 
-            "tol":[0.01,0.001,0.0001],
+            "C":[1,10,50,100],            
+            "gamma":[0.01,0.005,0.001,0.0005,0.0001],        
+            #"shrinking":[True,False],      
+            #"probability":[True,False], 
+            #"tol":[0.01,0.001,0.0001],
     }
     scores = [
         "accuracy",
@@ -351,25 +409,26 @@ if hyper_parameter_search:
         #"recall",       # The recall is intuitively the ability of the classifier to find all the positive samples.
         ]
     for score in scores:
-        print_to_txt_file("--- [%s] Running Parameter-Tests [RBF-SVC] ---" % datetime.now())
-        print_to_txt_file("Tuning parameters for criteria [%s]" % score)
+        log_hyperparameter_search("--- [%s] Running Parameter-Tests [Sigmoid-SVC] ---" % datetime.now())
+        log_hyperparameter_search("Tuning parameters for criteria [%s]" % score)
+        log_hyperparameter_search("Running with training data of %s and test data of %s" % num_train, num_test)
         # FIXME: Doesn't take accuracy as score for some reason. Refer to line below for accuracy score
         #grid = GridSearchCV(estimator=svm, param_grid=parameters, scoring="%s_macro" % score, verbose=3)
-        grid = GridSearchCV(estimator=svm, param_grid=parameters, scoring='accuracy', verbose=3)
+        grid = GridSearchCV(estimator=svm, param_grid=parameters, scoring='accuracy', verbose=3, n_jobs=-1)
         grid.fit(train_data, train_label)
 
-        print_to_txt_file("Best parameters set found on following development set:")
-        print_to_txt_file("\tSupport Vector: %s" % grid.best_estimator_)
-        print_to_txt_file("\tSupport Vector Parametrization: %s" % grid.best_params_)
-        print_to_txt_file("\tAsserted Score: %s" % grid.best_score_)
-        print_to_txt_file("Total Score \t\t Configurations")
+        log_hyperparameter_search("Best parameters set found on following development set:")
+        log_hyperparameter_search("\tSupport Vector: %s" % grid.best_estimator_)
+        log_hyperparameter_search("\tSupport Vector Parametrization: %s" % grid.best_params_)
+        log_hyperparameter_search("\tAsserted Score: %s" % grid.best_score_)
+        log_hyperparameter_search("Total Score \t\t Configurations")
 
         means = grid.cv_results_["mean_test_score"]
         stds = grid.cv_results_["std_test_score"]
         params = grid.cv_results_["params"]
         for mean, std, params in zip(means, stds, params):
-            print_to_txt_file("%0.3f (+/-%0.03f)\t%r" % (mean, std, params))
-        print("Wrote classifier comparisons to file ", txt_out_file_path)
+            log_hyperparameter_search("%0.3f (+/-%0.03f)\t%r" % (mean, std, params))
+        print("Wrote classifier comparisons to file ", hyperparameter_search_log)
 
         print("Detailed classification report:")
         print("The model is trained on the full development set.")

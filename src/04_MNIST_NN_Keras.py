@@ -2,8 +2,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from datetime import datetime
+import time
 
-# %matplotlib inline
+#%matplotlib inline
 import keras
 from keras.models import Sequential
 from keras.layers import Dense, Dropout
@@ -17,29 +18,25 @@ import seaborn as sns
 num_train = 15000                   # 60000 for full data set 
 num_test  = 2500                    # 10000 for full data set
 
-
-# Use GridSearchCV to look up optimal parameters (see below)
-hyper_parameter_search = True       # True/False: Run hyper-parameter search via GridSearchCV. Takes a long time.
-
 # Simple function to log information
-txt_out_file_path = 'keras-nn-hyperparameter-tuning-log.txt'
-def print_to_txt_file(*s):
-    with open(txt_out_file_path, 'a') as f:
+training_results = 'keras-nn-training-log.txt'
+def log_training_results(*s):
+    with open(training_results, 'a') as f:
         for arg in s:
             print(arg, file=f)
             print(arg)
+
 
 # Fetch MNIST-Data from Keras repository
 (X_train, y_train), (X_test, y_test) = mnist.load_data()
 
 # Display (Train) (Test) datasets
-print("Data : Dataset Trainingset")
-print(X_train.shape, X_test.shape)
-print("Labels : Dataset Trainingset")
-print(y_train.shape, y_test.shape)
+print("Shape of training data:\t\t", X_train.shape)
+print("Shape of training labels:\t", y_train.shape)
+print("Shape of testing data:\t\t", X_test.shape)
+print("Shape of testing labels:\t", y_test.shape)
 
 # i.e.: We have 60000 images with a size of 28x28 pixels
-
 # Visualize some examples
 num_classes = 10 # 0 .. 9
 f, ax = plt.subplots(1, num_classes, figsize=(20,20))
@@ -63,6 +60,7 @@ test_label = y_test.astype("float32")
 train_data = train_data / 255
 test_data = test_data / 255
 
+
 # Force the amount of columns to fit the necessary sizes required by the neural network
 train_label = keras.utils.to_categorical(train_label, num_classes)
 test_label = keras.utils.to_categorical(test_label, num_classes)
@@ -74,16 +72,15 @@ train_label = train_label[1:num_train]
 test_data = test_data[1:num_test,]
 test_label = test_label[1:num_test]
 
-
 # Display (Train) (Test) datasets
-print("Reshaped Data : Dataset Trainingset")
-print(train_data.shape, test_data.shape)
-print("Reshaped Labels : Dataset Trainingset")
-print(train_label.shape, test_label.shape)
+
+print("Reshaped training data:\t\t", train_data.shape)
+print("Reshaped training labels:\t", train_label.shape)
+print("Reshaped testing data:\t\t", test_data.shape)
+print("Reshaped testing labels:\t", test_label.shape)
 
 # As we can see: We now have X images with 784 pixels in total
 # We now operate on this data
-
 
 # Create model: https://keras.io/guides/sequential_model/
 model = Sequential()
@@ -94,6 +91,7 @@ model.add(Dense(units=128, activation='relu'))
 model.add(Dropout(0.25))
 model.add(Dense(units=10, activation='softmax'))
 
+# Compile model
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 model.summary()
 
@@ -102,13 +100,28 @@ batch_size = 512
 epochs=10
 
 # Train model
+start_time = time.time()
 model.fit(x=train_data, y=train_label, batch_size=batch_size, epochs=epochs)
+end_time = time.time() - start_time
+
+params = {"Keras":{}}
+log_training_results("[%s] Trained new model: %s in %s seconds" % (datetime.now(), params, end_time))
 
 # Evaluate model based on supplied tags
+start_time = time.time()
+test_loss, test_acc = model.evaluate(train_data, train_label)
+end_time = time.time() - start_time
+
+log_training_results("\tRunning Predictions on Train-Data --  execution time: %ss" % (end_time))
+log_training_results("\tScore data on %s -- Test accuracy on train-data: %s; Test loss on train-data: %s" % (params, test_acc, test_loss))  
+
+# Evaluate model based on supplied tags
+start_time = time.time()
 test_loss, test_acc = model.evaluate(test_data, test_label)
-print_to_txt_file("--- [%s] Running Keras-MLP Classifier ---" % datetime.now())
-print_to_txt_file("Test Loss: %s" % test_loss)
-print_to_txt_file("Test Accuracy: %s" % test_acc)
+end_time = time.time() - start_time
+
+log_training_results("\tRunning Predictions on Test-Data --  execution time: %ss" % (end_time))
+log_training_results("\tScore data on %s -- Test accuracy on test-data: %s; Test loss on test-data: %s" % (params, test_acc, test_loss))  
 
 # Let model predict data
 y_pred = model.predict(test_data)
@@ -126,6 +139,7 @@ y_sample_pred_class = y_pred_classes[random_idx]
 
 plt.title("Predicted: {}, True: {}".format(y_sample_pred_class, y_sample_true), fontsize=16)
 plt.imshow(x_sample.reshape(28, 28), cmap='gray')
+
 
 # Visualize estimation over correct and incorrect prediction via confusion matrix
 confusion_mtx = confusion_matrix(y_true, y_pred_classes)

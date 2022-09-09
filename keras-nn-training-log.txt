@@ -1,0 +1,5 @@
+[2022-09-09 12:36:41.813192] Trained new model: {'Keras': {}} in 1.7091944217681885 seconds
+	Running Predictions on Train-Data --  execution time: 0.6482634544372559s
+	Score data on {'Keras': {}} -- Test accuracy on train-data: 0.9766651391983032; Test loss on train-data: 0.08722902834415436
+	Running Predictions on Test-Data --  execution time: 0.12270784378051758s
+	Score data on {'Keras': {}} -- Test accuracy on test-data: 0.9363745450973511; Test loss on test-data: 0.2046072781085968
