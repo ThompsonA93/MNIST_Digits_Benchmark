@@ -3,6 +3,7 @@
 \usepackage{url}                        %% URLs
 \usepackage{color, colortbl, xcolor}    %% Colours
 \usepackage{import}                     %% Import environment - Vital for Builder-File
+\usepackage{geometry}           
 
 \usepackage{float}                      %% Enforce Placement via [H]
 \usepackage{caption}
@@ -19,5 +20,6 @@
 }
 
 \usepackage{titlesec}
-\titleformat{\chapter}[hang] 
-{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter:}{1em}{} 
+
+\titleformat{\chapter}[hang]{\mdseries\sffamily\LARGE}{\thechapter.\quad}{-6pt}{}
+\titleclass{\chapter}{straight}
