@@ -1,0 +1,23 @@
+\chapter{Methods and Resources}
+The methods chosen for the analysis include several well-known libraries.
+The imported dataset for computation is the mnist-dataset provided by the keras.datasets package.
+All python scripts include the datetime and time packages for timing purposes, while matplotlib offers some visualization functionalities (only for the .IPYNB files) for datasets.
+With the implementation of 4 python programs, each script uses it's own respective set of packages.
+\begin{enumerate}
+    \item SKLearn support vector machine
+    \item SKLearn support vector machine with principal component analysis
+    \item SKLearn multi-layer perceptron classification, with and without PCA
+    \item Keras sequential model
+\end{enumerate}
+
+The scripts implementing the SKLearn-Kit also allow for hyperparameter search using GridSearchCV, which allows automated customization and inspection of each algorithm over various pre-defined parameters in search of an optimal score for a specific criteria, here ''accuracy''.
+The program implementing the Keras library is further sophisticated by displaying which images were difficult to classify for the classification algorithm and a confusion matrix over the general results.
+
+\subsubsection{Approach}
+The programs start is standardized for all algorithms. After fetching the data from the keras.datasets-database, it is required to reshape and normalize the data for machine learning purposes.
+The reshaping of the data is the transformation of the original three-dimensional dataset to an two-dimensional training set.
+We reshape the data such that we have access to every pixel of the image. The reason to access every pixel is that only then we can apply deep learning ideas and can assign color code to every pixel.
+Furthermore, we know the RGB color code where different values produce various colors. We know that each pixel has its unique color code and also we know that this code has a maximum value of 255. 
+To perform Machine Learning, it is important to convert all the values from 0 to 255 for every pixel to a range of values from 0 to 1.
+Lastly, we optionally reduce the size of the training and testing data as to speed up the experimentation.
+Afterwards, the algorithms are supplied with the training data and the model fitting begins. In the context of this research, the accuracy and the execution time are used to rate each algorithm.
