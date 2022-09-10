@@ -1,5 +1,31 @@
 \chapter{Results}
 
+The following results have been computed over one-fourth of the original data set size and with default parameters, except for the kernel-type for SVMs and Layer-sizes for Neural Nets, of each package.
+
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|}\hline
+        Algorithm   & PCA-Enabled & Accuracy & Time  \\\hline
+        Linear SVM  & No        & 0.8935574229691877    & 2.54819655418396s \\
+        Linear SVM  & Yes       & 0.101640656262505     & 2.3763396739959717s \\
+        Poly SVM & No           & 0.938375350140056     & 3.057605504989624s \\
+        Poly SVM & Yes          & 0.09683873549419768   & 4.935593128204346s \\
+        RBF SVM & No            & 0.9487795118047219    & 6.784686803817749s \\
+        RBF SVM & Yes           & 0.10004001600640255   & 8.273269176483154s \\
+        Sigmoid SVM & No        & 0.7911164465786314    & 4.3955934047698975s \\
+        Sigmoid SVM & Yes       & 0.10284113645458183   & 3.973496198654175s \\
+        SKLearn MLP & No        & 0.9451780712284914    & 0.005684375762939453s \\
+        SKLearn MLP & Yes       & 0.101640656262505     & 0.008093595504760742s \\
+        Keras Sequential & N/A  & 0.9766651391983032    & 0.6482634544372559 \\\hline
+    \end{tabular}
+    \caption{Algorithms and their results.}
+    \label{tab:results_fit}
+\end{table}
+
+These values serve as a baseline for further experimentation, in form of hyperparameter estimations.
+Hyperparameter search using GridSearch has suggested the following optimal choice of parameters.
+
 % TODO as soon as I got the data tomorrow
 % Resulting data
 %   Configurations & Setups of Gridsearches
