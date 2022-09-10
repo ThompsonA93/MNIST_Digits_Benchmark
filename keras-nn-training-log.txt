@@ -3,3 +3,13 @@
 	Score data on {'Keras': {}} -- Test accuracy on train-data: 0.9766651391983032; Test loss on train-data: 0.08722902834415436
 	Running Predictions on Test-Data --  execution time: 0.12270784378051758s
 	Score data on {'Keras': {}} -- Test accuracy on test-data: 0.9363745450973511; Test loss on test-data: 0.2046072781085968
+[2022-09-09 12:46:57.055079] Trained new model: {'Keras': {}} in 2.2637975215911865 seconds
+	Running Predictions on Train-Data --  execution time: 0.8263404369354248s
+	Score data on {'Keras': {}} -- Test accuracy on train-data: 0.9777985215187073; Test loss on train-data: 0.08250588923692703
+	Running Predictions on Test-Data --  execution time: 0.13618063926696777s
+	Score data on {'Keras': {}} -- Test accuracy on test-data: 0.9351740479469299; Test loss on test-data: 0.2095569223165512
+[2022-09-09 17:43:50.425514] Trained new model: {'Keras': {}} in 1.560560703277588 seconds
+	Running Predictions on Train-Data --  execution time: 0.7606978416442871s
+	Score data on {'Keras': {}} -- Test accuracy on train-data: 0.9749983549118042; Test loss on train-data: 0.09181391447782516
+	Running Predictions on Test-Data --  execution time: 0.14234280586242676s
+	Score data on {'Keras': {}} -- Test accuracy on test-data: 0.9347739219665527; Test loss on test-data: 0.2162693440914154
