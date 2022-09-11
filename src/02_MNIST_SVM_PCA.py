@@ -2,26 +2,15 @@
 from datetime import datetime
 import time
 
-import sys
-
-import numpy as np
 import matplotlib.pyplot as plt
-#%matplotlib inline
+# %matplotlib inline
 
-import keras
-from keras.models import Sequential
-from keras.layers import Dense, Dropout
 from keras.datasets import mnist
 
 from sklearn.svm import SVC
 from sklearn.model_selection import GridSearchCV
 from sklearn.decomposition import PCA
 from sklearn.metrics import classification_report
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import confusion_matrix
-
-import seaborn as sns
-
 
 ### Configurations
 # Training-Size
@@ -29,7 +18,7 @@ num_train = 15000                   # 60000 for full data set
 num_test  = 2500                    # 10000 for full data set
 
 # Use GridSearchCV to look up optimal parameters (see below)
-hyper_parameter_search = True       # True/False: Run hyper-parameter search via GridSearchCV. Takes a long time.
+hyper_parameter_search = False       # True/False: Run hyper-parameter search via GridSearchCV. Takes a long time.
 
 
 # Simple function to log information
@@ -68,8 +57,10 @@ for i in range(0, num_classes):
   ax[i].set_title("Label: {}".format(i), fontsize=16)
   ax[i].axis('off')
 
+
 # Reshape the data such that we have access to every pixel of the image
 # The reason to access every pixel is that only then we can apply deep learning ideas and can assign color code to every pixel.
+
 train_data = X_train.reshape((X_train.shape[0], 28*28)).astype('float32')
 train_label = y_train.astype("float32")
 
@@ -88,7 +79,6 @@ train_label = train_label[1:num_train]
 
 test_data = test_data[1:num_test,]
 test_label = test_label[1:num_test]
-
 
 # Display (Train) (Test) datasets
 
@@ -114,7 +104,6 @@ pca = PCA(
     random_state=None                   # Used when the ‘arpack’ or ‘randomized’ solvers are used. Pass an int for reproducible results across multiple function calls. 
 )
 
-
 # Fitting the PCA algorithm with the datasets
 pca = PCA(
     n_components=None, 
@@ -127,11 +116,24 @@ pca = PCA(
     power_iteration_normalizer='auto', 
     random_state=None
 )
-pca.fit(train_data, train_label)
+#pca.fit(train_data, train_label)
+pca.fit(train_data)
 
 # Reshaping the data based on the PCA
 pca_train_data = pca.transform(train_data)
 pca_test_data = pca.transform(test_data)
+
+# Display (Train) (Test) datasets
+
+print("Reshaped training data:\t\t", pca_train_data.shape)
+print("Reshaped training labels:\t", train_label.shape)
+print("Reshaped testing data:\t\t", pca_test_data.shape)
+print("Reshaped testing labels:\t", test_label.shape)
+
+# As we can see: We now have X images with 784 pixels in total
+# We now operate on this data
+plt.hist(pca.explained_variance_ratio_, log=True)
+pca.explained_variance_ratio_.sum()
 
 # The default layout of svm.svc() 
 # @see https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html
@@ -178,16 +180,16 @@ end_time = time.time() - start_time
 log_training_results("[%s] Trained new model: {'Kernel':'%s'} in %s seconds" % (datetime.now(), svm.get_params()["kernel"], end_time))
 
 start_time = time.time()
-score = svm.score(train_data, train_label)
+score = svm.score(pca_train_data, train_label)
 end_time = time.time() - start_time
 log_training_results("\tScore data on [%s-pca] -- mean accuracy on train-data: %s; execution time: %ss" % (svm.get_params()["kernel"], score, end_time))  
 
 
 start_time = time.time()
-score = svm.score(test_data, test_label)
+score = svm.score(pca_test_data, test_label)
 end_time = time.time() - start_time
-log_training_results("\tScore data on [%s-pca] -- mean accuracy on test-data: %s; execution time: %ss" % (svm.get_params()["kernel"], score, end_time))  
-
+log_training_results("\tScore data on [%s-pca] -- mean accuracy on test-data: %s; execution time: %ss" % (svm.get_params()["kernel"], score, end_time)) 
+ 
 # Hyperparameter search -- Takes up a long time.
 if hyper_parameter_search:
     svm = SVC()
@@ -229,7 +231,7 @@ if hyper_parameter_search:
         print("The model is trained on the full development set.")
         print("The scores are computed on the full evaluation set.")
     
-        y_true, y_pred = test_label, grid.predict(test_data)
+        y_true, y_pred = test_label, grid.predict(pca_train_data)
         print(classification_report(y_true, y_pred))
         print()
 
@@ -258,15 +260,15 @@ end_time = time.time() - start_time
 log_training_results("[%s] Trained new model: {'Kernel':'%s'} in %s seconds" % (datetime.now(), svm.get_params()["kernel"], end_time))
 
 start_time = time.time()
-score = svm.score(train_data, train_label)
+score = svm.score(pca_train_data, train_label)
 end_time = time.time() - start_time
 log_training_results("\tScore data on [%s-pca] -- mean accuracy on train-data: %s; execution time: %ss" % (svm.get_params()["kernel"], score, end_time))  
 
 
 start_time = time.time()
-score = svm.score(test_data, test_label)
+score = svm.score(pca_test_data, test_label)
 end_time = time.time() - start_time
-log_training_results("\tScore data on [%s-pca] -- mean accuracy on test-data: %s; execution time: %ss" % (svm.get_params()["kernel"], score, end_time))  
+log_training_results("\tScore data on [%s-pca] -- mean accuracy on test-data: %s; execution time: %ss" % (svm.get_params()["kernel"], score, end_time)) 
 
 
 # Hyperparameter search -- Takes up a long time.
@@ -312,7 +314,7 @@ if hyper_parameter_search:
         print("The model is trained on the full development set.")
         print("The scores are computed on the full evaluation set.")
     
-        y_true, y_pred = test_label, grid.predict(test_data)
+        y_true, y_pred = test_label, grid.predict(pca_train_data)
         print(classification_report(y_true, y_pred))
         print()
 
@@ -341,15 +343,15 @@ end_time = time.time() - start_time
 log_training_results("[%s] Trained new model: {'Kernel':'%s'} in %s seconds" % (datetime.now(), svm.get_params()["kernel"], end_time))
 
 start_time = time.time()
-score = svm.score(train_data, train_label)
+score = svm.score(pca_train_data, train_label)
 end_time = time.time() - start_time
 log_training_results("\tScore data on [%s-pca] -- mean accuracy on train-data: %s; execution time: %ss" % (svm.get_params()["kernel"], score, end_time))  
 
 
 start_time = time.time()
-score = svm.score(test_data, test_label)
+score = svm.score(pca_test_data, test_label)
 end_time = time.time() - start_time
-log_training_results("\tScore data on [%s-pca] -- mean accuracy on test-data: %s; execution time: %ss" % (svm.get_params()["kernel"], score, end_time))  
+log_training_results("\tScore data on [%s-pca] -- mean accuracy on test-data: %s; execution time: %ss" % (svm.get_params()["kernel"], score, end_time)) 
 
 # Hyperparameter search -- Takes up a long time.
 if hyper_parameter_search:
@@ -392,7 +394,7 @@ if hyper_parameter_search:
         print("The model is trained on the full development set.")
         print("The scores are computed on the full evaluation set.")
     
-        y_true, y_pred = test_label, grid.predict(test_data)
+        y_true, y_pred = test_label, grid.predict(pca_train_data)
         print(classification_report(y_true, y_pred))
         print()
 
@@ -421,15 +423,17 @@ end_time = time.time() - start_time
 log_training_results("[%s] Trained new model: {'Kernel':'%s'} in %s seconds" % (datetime.now(), svm.get_params()["kernel"], end_time))
 
 start_time = time.time()
-score = svm.score(train_data, train_label)
+score = svm.score(pca_train_data, train_label)
 end_time = time.time() - start_time
 log_training_results("\tScore data on [%s-pca] -- mean accuracy on train-data: %s; execution time: %ss" % (svm.get_params()["kernel"], score, end_time))  
 
 
 start_time = time.time()
-score = svm.score(test_data, test_label)
+score = svm.score(pca_test_data, test_label)
 end_time = time.time() - start_time
-log_training_results("\tScore data on [%s-pca] -- mean accuracy on test-data: %s; execution time: %ss" % (svm.get_params()["kernel"], score, end_time))  
+log_training_results("\tScore data on [%s-pca] -- mean accuracy on test-data: %s; execution time: %ss" % (svm.get_params()["kernel"], score, end_time)) 
+
+
 
 # Hyperparameter search -- Takes up a long time.
 if hyper_parameter_search:
@@ -472,6 +476,6 @@ if hyper_parameter_search:
         print("The model is trained on the full development set.")
         print("The scores are computed on the full evaluation set.")
     
-        y_true, y_pred = test_label, grid.predict(test_data)
+        y_true, y_pred = test_label, grid.predict(pca_train_data)
         print(classification_report(y_true, y_pred))
         print()

@@ -1,15 +1,10 @@
-[2022-09-09 12:36:41.813192] Trained new model: {'Keras': {}} in 1.7091944217681885 seconds
-	Running Predictions on Train-Data --  execution time: 0.6482634544372559s
-	Score data on {'Keras': {}} -- Test accuracy on train-data: 0.9766651391983032; Test loss on train-data: 0.08722902834415436
-	Running Predictions on Test-Data --  execution time: 0.12270784378051758s
-	Score data on {'Keras': {}} -- Test accuracy on test-data: 0.9363745450973511; Test loss on test-data: 0.2046072781085968
-[2022-09-09 12:46:57.055079] Trained new model: {'Keras': {}} in 2.2637975215911865 seconds
-	Running Predictions on Train-Data --  execution time: 0.8263404369354248s
-	Score data on {'Keras': {}} -- Test accuracy on train-data: 0.9777985215187073; Test loss on train-data: 0.08250588923692703
-	Running Predictions on Test-Data --  execution time: 0.13618063926696777s
-	Score data on {'Keras': {}} -- Test accuracy on test-data: 0.9351740479469299; Test loss on test-data: 0.2095569223165512
-[2022-09-09 17:43:50.425514] Trained new model: {'Keras': {}} in 1.560560703277588 seconds
-	Running Predictions on Train-Data --  execution time: 0.7606978416442871s
-	Score data on {'Keras': {}} -- Test accuracy on train-data: 0.9749983549118042; Test loss on train-data: 0.09181391447782516
-	Running Predictions on Test-Data --  execution time: 0.14234280586242676s
-	Score data on {'Keras': {}} -- Test accuracy on test-data: 0.9347739219665527; Test loss on test-data: 0.2162693440914154
+[2022-09-11 13:35:46.841742] Trained new model: {'Keras': {}} in 1.6812801361083984 seconds
+	Running Predictions on Train-Data --  execution time: 0.7248241901397705s
+	Score data on {'Keras': {}} -- Test accuracy on train-data: 0.9756650328636169; Test loss on train-data: 0.08973536640405655
+	Running Predictions on Test-Data --  execution time: 0.15423226356506348s
+	Score data on {'Keras': {}} -- Test accuracy on test-data: 0.9323729276657104; Test loss on test-data: 0.21201477944850922
+[2022-09-11 13:44:16.541336] Trained new model: {'Keras': {}} in 1.6645228862762451 seconds
+	Running Predictions on Train-Data --  execution time: 0.7160611152648926s
+	Score data on {'Keras': {}} -- Test accuracy on train-data: 0.9753316640853882; Test loss on train-data: 0.08905851095914841
+	Running Predictions on Test-Data --  execution time: 0.15199017524719238s
+	Score data on {'Keras': {}} -- Test accuracy on test-data: 0.936774730682373; Test loss on test-data: 0.20244722068309784

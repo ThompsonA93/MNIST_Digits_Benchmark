@@ -1,0 +1,24 @@
+[2022-09-11 13:30:54.939017] Trained new model: {'Kernel':'linear'} in 11.891320943832397 seconds
+	Score data on [linear-pca] -- mean accuracy on train-data: 0.9921328088539236; execution time: 18.482515335083008s
+	Score data on [linear-pca] -- mean accuracy on test-data: 0.8935574229691877; execution time: 3.135808229446411s
+[2022-09-11 13:31:55.195734] Trained new model: {'Kernel':'poly'} in 38.63764786720276 seconds
+	Score data on [poly-pca] -- mean accuracy on train-data: 0.9965331022068138; execution time: 33.63617205619812s
+	Score data on [poly-pca] -- mean accuracy on test-data: 0.9555822328931572; execution time: 5.557970285415649s
+[2022-09-11 13:32:57.666184] Trained new model: {'Kernel':'rbf'} in 23.275160551071167 seconds
+	Score data on [rbf-pca] -- mean accuracy on train-data: 0.9928661910794053; execution time: 47.770718812942505s
+	Score data on [rbf-pca] -- mean accuracy on test-data: 0.9551820728291317; execution time: 7.994996786117554s
+[2022-09-11 13:34:10.577208] Trained new model: {'Kernel':'sigmoid'} in 17.1446692943573 seconds
+	Score data on [sigmoid-pca] -- mean accuracy on train-data: 0.884192279485299; execution time: 30.261048316955566s
+	Score data on [sigmoid-pca] -- mean accuracy on test-data: 0.8563425370148059; execution time: 4.913268804550171s
+[2022-09-11 13:39:36.339311] Trained new model: {'Kernel':'linear'} in 12.069284439086914 seconds
+	Score data on [linear-pca] -- mean accuracy on train-data: 0.9921328088539236; execution time: 18.894379377365112s
+	Score data on [linear-pca] -- mean accuracy on test-data: 0.8935574229691877; execution time: 3.132308006286621s
+[2022-09-11 13:40:37.022522] Trained new model: {'Kernel':'poly'} in 38.65575575828552 seconds
+	Score data on [poly-pca] -- mean accuracy on train-data: 0.9965331022068138; execution time: 33.02117419242859s
+	Score data on [poly-pca] -- mean accuracy on test-data: 0.9555822328931572; execution time: 5.648631811141968s
+[2022-09-11 13:41:37.912733] Trained new model: {'Kernel':'rbf'} in 22.21945548057556 seconds
+	Score data on [rbf-pca] -- mean accuracy on train-data: 0.9928661910794053; execution time: 44.64640808105469s
+	Score data on [rbf-pca] -- mean accuracy on test-data: 0.9551820728291317; execution time: 7.797608137130737s
+[2022-09-11 13:42:47.891571] Trained new model: {'Kernel':'sigmoid'} in 17.53410792350769 seconds
+	Score data on [sigmoid-pca] -- mean accuracy on train-data: 0.884192279485299; execution time: 28.857499361038208s
+	Score data on [sigmoid-pca] -- mean accuracy on test-data: 0.8563425370148059; execution time: 4.77394437789917s

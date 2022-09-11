@@ -1,31 +1,15 @@
 ### Packages
-import numpy as np
-import pandas as pd
 from datetime import datetime
 import time
-
-import sys
-
-import numpy as np
 import matplotlib.pyplot as plt
-#%matplotlib inline
+# %matplotlib inline
 
-import keras
-from keras.models import Sequential
-from keras.layers import Dense, Dropout
 from keras.datasets import mnist
 
-from sklearn.svm import SVC
 from sklearn.model_selection import GridSearchCV
 from sklearn.decomposition import PCA
-from sklearn.preprocessing import StandardScaler
 from sklearn.neural_network import MLPClassifier
-
 from sklearn.metrics import classification_report
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import confusion_matrix
-
-import seaborn as sns
 
 
 ### Configurations
@@ -35,7 +19,8 @@ num_test  = 2500                    # 10000 for full data set
 
 
 # Use GridSearchCV to look up optimal parameters (see below)
-hyper_parameter_search = True       # True/False: Run hyper-parameter search via GridSearchCV. Takes a long time.
+hyper_parameter_search = False       # True/False: Run hyper-parameter search via GridSearchCV. Takes a long time.
+
 
 # Simple function to log information
 training_results = 'sklearn-nn-training-log.txt'
@@ -73,8 +58,6 @@ for i in range(0, num_classes):
   ax[i].set_title("Label: {}".format(i), fontsize=16)
   ax[i].axis('off')
 
-
-
 # Reshape the data such that we have access to every pixel of the image
 # The reason to access every pixel is that only then we can apply deep learning ideas and can assign color code to every pixel.
 train_data = X_train.reshape((X_train.shape[0], 28*28)).astype('float32')
@@ -88,7 +71,6 @@ test_label = y_test.astype("float32")
 # To perform Machine Learning, it is important to convert all the values from 0 to 255 for every pixel to a range of values from 0 to 1.
 train_data = train_data / 255
 test_data = test_data / 255
-
 
 # Force the amount of columns to fit the necessary sizes required by the neural network
 #train_label = keras.utils.to_categorical(train_label, num_classes)
@@ -169,7 +151,6 @@ score = mlp.score(test_data, test_label)
 end_time = time.time() - start_time
 log_training_results("\tScore data on %s -- mean accuracy on test-data: %s; execution time: %ss" % (params, score, end_time))  
 
-
 # # Hyperparameter search -- Takes up a long time.
 if hyper_parameter_search:
     mlp = MLPClassifier(max_iter=100)
@@ -241,13 +222,14 @@ end_time = time.time() - start_time
 
 log_training_results("\tRunning Predictions on Test-Data --  execution time: %ss" % (end_time))
 
+
 start_time = time.time()
-score = mlp.score(train_data, train_label)
+score = mlp.score(pca_train_data, train_label)
 end_time = time.time() - start_time
 log_training_results("\tScore data on %s -- mean accuracy on train-data: %s; execution time: %ss" % (params, score, end_time))  
 
 start_time = time.time()
-score = mlp.score(test_data, test_label)
+score = mlp.score(pca_test_data, test_label)
 end_time = time.time() - start_time
 log_training_results("\tScore data on %s -- mean accuracy on test-data: %s; execution time: %ss" % (params, score, end_time))  
 
@@ -284,6 +266,6 @@ if hyper_parameter_search:
     print("The model is trained on the full development set.")
     print("The scores are computed on the full evaluation set.")
 
-    y_true, y_pred = test_label, grid.predict(test_data)
+    y_true, y_pred = test_label, grid.predict(pca_train_data)
     print(classification_report(y_true, y_pred))
     print()

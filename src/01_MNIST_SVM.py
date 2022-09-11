@@ -3,9 +3,8 @@ from datetime import datetime
 import time
 
 import matplotlib.pyplot as plt
-#%matplotlib inline
+# %matplotlib inline
 
-import keras
 from keras.datasets import mnist
 
 from sklearn.svm import SVC
@@ -18,8 +17,7 @@ num_train = 15000                   # 60000 for full data set
 num_test  = 2500                    # 10000 for full data set
 
 # Use GridSearchCV to look up optimal parameters (see below)
-hyper_parameter_search = True       # True/False: Run hyper-parameter search via GridSearchCV. Takes a long time.
-
+hyper_parameter_search = False       # True/False: Run hyper-parameter search via GridSearchCV. Takes a long time.
 
 # Simple function to log information
 training_results = 'svm-training-log.txt'
@@ -37,7 +35,6 @@ def log_hyperparameter_search(*s):
             print(arg, file=f)
             print(arg)
 
-
 # Fetch MNIST-Data from Keras repository
 (X_train, y_train), (X_test, y_test) = mnist.load_data()
 
@@ -48,6 +45,8 @@ print("Shape of testing data:\t\t", X_test.shape)
 print("Shape of testing labels:\t", y_test.shape)
 
 # i.e.: We have 60000 images with a size of 28x28 pixels
+
+
 # Visualize some examples
 num_classes = 10 # 0 .. 9
 f, ax = plt.subplots(1, num_classes, figsize=(20,20))
@@ -108,7 +107,6 @@ svm = SVC(
     random_state=None               # Controls the pseudo random number generation for shuffling the data for probability estimates.
 )
 
-
 # Evalute SVM.SVC with parameters on data below
 svm = SVC(
     C=1.0, 
@@ -143,7 +141,6 @@ start_time = time.time()
 score = svm.score(test_data, test_label)
 end_time = time.time() - start_time
 log_training_results("\tScore data on [%s] -- mean accuracy on test-data: %s; execution time: %ss" % (svm.get_params()["kernel"], score, end_time))  
-
 
 # Hyperparameter search -- Takes up a long time.
 if hyper_parameter_search:
@@ -226,7 +223,6 @@ score = svm.score(test_data, test_label)
 end_time = time.time() - start_time
 log_training_results("\tScore data on [%s] -- mean accuracy on test-data: %s; execution time: %ss" % (svm.get_params()["kernel"], score, end_time))  
 
-
 # Hyperparameter search -- Takes up a long time.
 if hyper_parameter_search:
     svm = SVC()
@@ -274,6 +270,7 @@ if hyper_parameter_search:
         print(classification_report(y_true, y_pred))
         print()
 
+
 # Eval SVM on Training Data
 svm = SVC(
     C=1.0, 
@@ -309,6 +306,7 @@ start_time = time.time()
 score = svm.score(test_data, test_label)
 end_time = time.time() - start_time
 log_training_results("\tScore data on [%s] -- mean accuracy on test-data: %s; execution time: %ss" % (svm.get_params()["kernel"], score, end_time))  
+
 
 # Hyperparameter search -- Takes up a long time.
 if hyper_parameter_search:
@@ -355,7 +353,6 @@ if hyper_parameter_search:
         print(classification_report(y_true, y_pred))
         print()
 
-
 # Eval SVM on Training Data
 svm = SVC(
     C=1.0, 
@@ -390,7 +387,6 @@ start_time = time.time()
 score = svm.score(test_data, test_label)
 end_time = time.time() - start_time
 log_training_results("\tScore data on [%s] -- mean accuracy on test-data: %s; execution time: %ss" % (svm.get_params()["kernel"], score, end_time))  
-
 
 # Hyperparameter search -- Takes up a long time.
 if hyper_parameter_search:
