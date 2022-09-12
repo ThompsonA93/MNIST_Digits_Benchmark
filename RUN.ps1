@@ -1,4 +1,4 @@
-for($i = 0; $i -lt 2; $i++){
+for($i = 0; $i -lt 3; $i++){
     Write-Host "[$i] Script iteration" 
     python.exe .\src\01_MNIST_SVM.py
     python.exe .\src\02_MNIST_SVM_PCA.py

@@ -1,8 +1,14 @@
+#
+# This file merely acts as an python-native substitue for the IPYNB (Jupyter) files, for the sake of automation and portability
+#
+
 ### Packages
 from datetime import datetime
 import time
+import os
+
 import matplotlib.pyplot as plt
-# %matplotlib inline
+#%matplotlib inline
 
 from keras.datasets import mnist
 
@@ -11,33 +17,37 @@ from sklearn.decomposition import PCA
 from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import classification_report
 
+import config
 
 ### Configurations
 # Training-Size
-num_train = 15000                   # 60000 for full data set 
-num_test  = 2500                    # 10000 for full data set
-
-
-# Use GridSearchCV to look up optimal parameters (see below)
-hyper_parameter_search = True       # True/False: Run hyper-parameter search via GridSearchCV. Takes a long time.
-
+num_train = config.num_train                   # 60000 for full data set 
+num_test  = config.num_test                    # 10000 for full data set
 
 # Simple function to log information
-training_results = 'sklearn-nn-training-log.txt'
+path = os.getcwd()+"/log"
+logDir = os.path.exists(path)
+if not logDir:
+    os.makedirs(path)
+
+training_results = path+"/sklearn-nn-training-log.txt"
 def log_training_results(*s):
     with open(training_results, 'a') as f:
         for arg in s:
             print(arg, file=f)
             print(arg)
 
-# Simple function to log information
-hyperparameter_search_log = 'sklearn-nn-hyperparameter-tuning-log.txt'
+hyperparameter_search_log = path+"/sklearn-nn-hyperparameter-tuning-log.txt"
 def log_hyperparameter_search(*s):
     with open(hyperparameter_search_log, 'a') as f:
         for arg in s:
             print(arg, file=f)
             print(arg)
 
+print("Generated data will be located in ", training_results, hyperparameter_search_log)
+log_training_results("[%s] on (%s, %s) using (Train: %s, Test: %s)" % (datetime.now(), config.os, config.cpu, config.num_train, config.num_test))
+if config.hyper_parameter_search:
+    log_hyperparameter_search("[%s] on (%s, %s) using (Train: %s, Test: %s)" % (datetime.now(), config.os, config.cpu, config.num_train, config.num_test))
 
 # Fetch MNIST-Data from Keras repository
 (X_train, y_train), (X_test, y_test) = mnist.load_data()
@@ -49,6 +59,7 @@ print("Shape of testing data:\t\t", X_test.shape)
 print("Shape of testing labels:\t", y_test.shape)
 
 # i.e.: We have 60000 images with a size of 28x28 pixels
+
 # Visualize some examples
 num_classes = 10 # 0 .. 9
 f, ax = plt.subplots(1, num_classes, figsize=(20,20))
@@ -125,35 +136,42 @@ mlp = MLPClassifier(
 #   X ... ndarray or sparse matrix of shape (n_samples, n_features), the input data
 #   y ... ndarray of shape (n_samples,) or (n_samples, n_outputs), the target values (class labels in classification, real numbers in regression)
 
+mlp = MLPClassifier()
 start_time = time.time()
 mlp.fit(train_data, train_label)
 end_time = time.time() - start_time
 
 params = {"MLP":{'activation':mlp.get_params()["activation"], 'alpha':mlp.get_params()["alpha"], 'epsilon':mlp.get_params()["epsilon"], 'hidden_layer_sizes':mlp.get_params()["hidden_layer_sizes"]}}
-log_training_results("[%s] Trained new model: %s in %s seconds" % (datetime.now(), params, end_time))
+log_training_results("Trained new model: %s in %s seconds" % (params, end_time))
 
 # Predict using the multi-layer perceptron classifier.
 #   X ... {array-like, sparse matrix} of shape (n_samples, n_features)
+
+start_time = time.time()
+predictions = mlp.predict(train_data)
+end_time = time.time() - start_time
+log_training_results("\tPredicting train data -- execution time: %ss" % (end_time))
+
+
 start_time = time.time()
 predictions = mlp.predict(test_data)
 end_time = time.time() - start_time
-
-log_training_results("\tRunning Predictions on Test-Data --  execution time: %ss" % (end_time))
+log_training_results("\tPredicting test data -- execution time: %ss" % (end_time))
 
 
 start_time = time.time()
 score = mlp.score(train_data, train_label)
 end_time = time.time() - start_time
-log_training_results("\tScore data on %s -- mean accuracy on train-data: %s; execution time: %ss" % (params, score, end_time))  
+log_training_results("\t[Train-data x %s] -- mean accuracy: %s; execution time: %ss" % (params, score, end_time))  
 
 start_time = time.time()
 score = mlp.score(test_data, test_label)
 end_time = time.time() - start_time
-log_training_results("\tScore data on %s -- mean accuracy on test-data: %s; execution time: %ss" % (params, score, end_time))  
+log_training_results("\t[Test-data x %s] -- mean accuracy: %s; execution time: %ss" % (params, score, end_time))  
 
 # # Hyperparameter search -- Takes up a long time.
-if hyper_parameter_search:
-    mlp = MLPClassifier(max_iter=100)
+if config.hyper_parameter_search:
+    mlp = MLPClassifier()
     parameters = {
         'hidden_layer_sizes': [(28,28),(784,)],
         'activation': ['tanh', 'relu'],
@@ -163,15 +181,15 @@ if hyper_parameter_search:
     }
 
     log_hyperparameter_search("--- [%s] Running Parameter-Tests [SKLEARN-NN] ---" % datetime.now())
-
     grid = GridSearchCV(estimator=mlp, param_grid=parameters, verbose=3, n_jobs=-1)
     grid.fit(train_data, train_label)
 
-    log_hyperparameter_search("Best parameters set found on following development set:")
-    log_hyperparameter_search("\tSupport Vector: %s" % grid.best_estimator_)
-    log_hyperparameter_search("\tSupport Vector Parametrization: %s" % grid.best_params_)
-    log_hyperparameter_search("\tAsserted Score: %s" % grid.best_score_)
+    log_hyperparameter_search("\tBest parameters set found on following development set:")
+    log_hyperparameter_search("\t\tSupport Vector: %s" % grid.best_estimator_)
+    log_hyperparameter_search("\t\tSupport Vector Parametrization: %s" % grid.best_params_)
+    log_hyperparameter_search("\t\tAsserted Score: %s" % grid.best_score_)
     log_hyperparameter_search("Total Score \t\t Configurations")
+
     means = grid.cv_results_["mean_test_score"]
     stds = grid.cv_results_["std_test_score"]
     params = grid.cv_results_["params"]
@@ -182,10 +200,12 @@ if hyper_parameter_search:
     print("Detailed classification report:")
     print("The model is trained on the full development set.")
     print("The scores are computed on the full evaluation set.")
-
+    
     y_true, y_pred = test_label, grid.predict(test_data)
-    print(classification_report(y_true, y_pred))
+    log_hyperparameter_search(classification_report(y_true, y_pred))
     print()
+
+
 
 
 # Fitting the PCA algorithm with the datasets
@@ -200,7 +220,8 @@ pca = PCA(
     power_iteration_normalizer='auto', 
     random_state=None
 )
-pca.fit(train_data, train_label)
+
+pca = PCA().fit(train_data)
 
 # Reshaping the data based on the PCA
 pca_train_data = pca.transform(train_data)
@@ -212,29 +233,35 @@ mlp.fit(pca_train_data, train_label)
 end_time = time.time() - start_time
 
 params = {"MLP-PCA":{'activation':mlp.get_params()["activation"], 'alpha':mlp.get_params()["alpha"], 'epsilon':mlp.get_params()["epsilon"], 'hidden_layer_sizes':mlp.get_params()["hidden_layer_sizes"]}}
-log_training_results("[%s] Trained new model: %s in %s seconds" % (datetime.now(), params, end_time))
+log_training_results("Trained new model: %s in %s seconds" % (params, end_time))
 
 # Predict using the multi-layer perceptron classifier.
+#   X ... {array-like, sparse matrix} of shape (n_samples, n_features)
+
+start_time = time.time()
+predictions = mlp.predict(pca_train_data)
+end_time = time.time() - start_time
+log_training_results("\tPredicting PCA train data -- execution time: %ss" % (end_time))
+
 
 start_time = time.time()
 predictions = mlp.predict(pca_test_data)
 end_time = time.time() - start_time
-
-log_training_results("\tRunning Predictions on Test-Data --  execution time: %ss" % (end_time))
+log_training_results("\tPredicting PCA test data -- execution time: %ss" % (end_time))
 
 
 start_time = time.time()
 score = mlp.score(pca_train_data, train_label)
 end_time = time.time() - start_time
-log_training_results("\tScore data on %s -- mean accuracy on train-data: %s; execution time: %ss" % (params, score, end_time))  
+log_training_results("\t[PCA x Train-data x %s] -- mean accuracy: %s; execution time: %ss" % (params, score, end_time))  
 
 start_time = time.time()
 score = mlp.score(pca_test_data, test_label)
 end_time = time.time() - start_time
-log_training_results("\tScore data on %s -- mean accuracy on test-data: %s; execution time: %ss" % (params, score, end_time))  
+log_training_results("\t[PCA x Test-data x %s] -- mean accuracy: %s; execution time: %ss" % (params, score, end_time))  
 
 # # Hyperparameter search -- Takes up a long time.
-if hyper_parameter_search:
+if config.hyper_parameter_search:
     mlp_gs = MLPClassifier(max_iter=100)
     parameters = {
         'hidden_layer_sizes': [(28,28),(784,)],
@@ -244,17 +271,17 @@ if hyper_parameter_search:
         'learning_rate': ['constant','adaptive'],
     }
 
-    log_hyperparameter_search("--- [%s] Running Parameter-Tests [SKLEARN-NN] ---" % datetime.now())
-
+    log_hyperparameter_search("--- [%s] Running Parameter-Tests [SKLEARN-NN-PCA] ---" % datetime.now())
 
     grid = GridSearchCV(estimator=mlp_gs, param_grid=parameters, verbose=3, n_jobs=-1)
     grid.fit(pca_train_data, train_label)
 
-    log_hyperparameter_search("Best parameters set found on following development set:")
-    log_hyperparameter_search("\tSupport Vector: %s" % grid.best_estimator_)
-    log_hyperparameter_search("\tSupport Vector Parametrization: %s" % grid.best_params_)
-    log_hyperparameter_search("\tAsserted Score: %s" % grid.best_score_)
+    log_hyperparameter_search("\tBest parameters set found on following development set:")
+    log_hyperparameter_search("\t\tSupport Vector: %s" % grid.best_estimator_)
+    log_hyperparameter_search("\t\tSupport Vector Parametrization: %s" % grid.best_params_)
+    log_hyperparameter_search("\t\tAsserted Score: %s" % grid.best_score_)
     log_hyperparameter_search("Total Score \t\t Configurations")
+
     means = grid.cv_results_["mean_test_score"]
     stds = grid.cv_results_["std_test_score"]
     params = grid.cv_results_["params"]
@@ -265,7 +292,9 @@ if hyper_parameter_search:
     print("Detailed classification report:")
     print("The model is trained on the full development set.")
     print("The scores are computed on the full evaluation set.")
-
-    y_true, y_pred = test_label, grid.predict(pca_train_data)
-    print(classification_report(y_true, y_pred))
+    
+    y_true, y_pred = test_label, grid.predict(pca_test_data)
+    log_hyperparameter_search(classification_report(y_true, y_pred))
     print()
+
+

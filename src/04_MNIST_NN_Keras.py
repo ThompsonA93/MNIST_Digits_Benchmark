@@ -1,8 +1,13 @@
+#
+# This file merely acts as an python-native substitue for the IPYNB (Jupyter) files, for the sake of automation and portability
+#
+
 # Import dependencies
 import numpy as np
 import matplotlib.pyplot as plt
 from datetime import datetime
 import time
+import os
 
 #%matplotlib inline
 import keras
@@ -12,20 +17,28 @@ from keras.datasets import mnist
 from sklearn.metrics import confusion_matrix
 import seaborn as sns
 
+import config
 
 ### Configurations
 # Training-Size
-num_train = 15000                   # 60000 for full data set 
-num_test  = 2500                    # 10000 for full data set
+num_train = config.num_train                   # 60000 for full data set 
+num_test  = config.num_test                    # 10000 for full data set
 
 # Simple function to log information
-training_results = 'keras-nn-training-log.txt'
+path = os.getcwd()+"/log"
+logDir = os.path.exists(path)
+if not logDir:
+    os.makedirs(path)
+
+training_results = path+"/keras-nn-training-log.txt"
 def log_training_results(*s):
     with open(training_results, 'a') as f:
         for arg in s:
             print(arg, file=f)
             print(arg)
 
+print("Generated data will be located in ", training_results)
+log_training_results("[%s] on (%s, %s) using (Train: %s, Test: %s)" % (datetime.now(), config.os, config.cpu, config.num_train, config.num_test))
 
 # Fetch MNIST-Data from Keras repository
 (X_train, y_train), (X_test, y_test) = mnist.load_data()
@@ -37,6 +50,7 @@ print("Shape of testing data:\t\t", X_test.shape)
 print("Shape of testing labels:\t", y_test.shape)
 
 # i.e.: We have 60000 images with a size of 28x28 pixels
+
 # Visualize some examples
 num_classes = 10 # 0 .. 9
 f, ax = plt.subplots(1, num_classes, figsize=(20,20))
@@ -59,7 +73,6 @@ test_label = y_test.astype("float32")
 # To perform Machine Learning, it is important to convert all the values from 0 to 255 for every pixel to a range of values from 0 to 1.
 train_data = train_data / 255
 test_data = test_data / 255
-
 
 # Force the amount of columns to fit the necessary sizes required by the neural network
 train_label = keras.utils.to_categorical(train_label, num_classes)
@@ -105,23 +118,23 @@ model.fit(x=train_data, y=train_label, batch_size=batch_size, epochs=epochs)
 end_time = time.time() - start_time
 
 params = {"Keras":{}}
-log_training_results("[%s] Trained new model: %s in %s seconds" % (datetime.now(), params, end_time))
+log_training_results("Trained new model: %s in %s seconds" % (params, end_time))
 
 # Evaluate model based on supplied tags
 start_time = time.time()
 test_loss, test_acc = model.evaluate(train_data, train_label)
 end_time = time.time() - start_time
 
-log_training_results("\tRunning Predictions on Train-Data --  execution time: %ss" % (end_time))
-log_training_results("\tScore data on %s -- Test accuracy on train-data: %s; Test loss on train-data: %s" % (params, test_acc, test_loss))  
+log_training_results("\tPredicting train data -- execution time: %ss" % (end_time))
+log_training_results("\t[%s] -- Accuracy: %s; Loss: %s" % (params, test_acc, test_loss))  
 
 # Evaluate model based on supplied tags
 start_time = time.time()
 test_loss, test_acc = model.evaluate(test_data, test_label)
 end_time = time.time() - start_time
 
-log_training_results("\tRunning Predictions on Test-Data --  execution time: %ss" % (end_time))
-log_training_results("\tScore data on %s -- Test accuracy on test-data: %s; Test loss on test-data: %s" % (params, test_acc, test_loss))  
+log_training_results("\tPredicting test data --  execution time: %ss" % (end_time))
+log_training_results("\t[%s] -- Accuracy: %s; Loss: %s" % (params, test_acc, test_loss))  
 
 # Let model predict data
 y_pred = model.predict(test_data)
@@ -140,7 +153,6 @@ y_sample_pred_class = y_pred_classes[random_idx]
 plt.title("Predicted: {}, True: {}".format(y_sample_pred_class, y_sample_true), fontsize=16)
 plt.imshow(x_sample.reshape(28, 28), cmap='gray')
 
-
 # Visualize estimation over correct and incorrect prediction via confusion matrix
 confusion_mtx = confusion_matrix(y_true, y_pred_classes)
 
@@ -149,7 +161,7 @@ fig, ax = plt.subplots(figsize=(15,10))
 ax = sns.heatmap(confusion_mtx, annot=True, fmt='d', ax=ax, cmap="Blues")
 ax.set_xlabel('Predicted Label')
 ax.set_ylabel('True Label')
-ax.set_title('Confusion Matrix');
+ax.set_title('Confusion Matrix')
 
 # Review some Errors
 # Create some sets of data
