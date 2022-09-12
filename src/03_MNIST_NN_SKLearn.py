@@ -19,7 +19,7 @@ num_test  = 2500                    # 10000 for full data set
 
 
 # Use GridSearchCV to look up optimal parameters (see below)
-hyper_parameter_search = False       # True/False: Run hyper-parameter search via GridSearchCV. Takes a long time.
+hyper_parameter_search = True       # True/False: Run hyper-parameter search via GridSearchCV. Takes a long time.
 
 
 # Simple function to log information

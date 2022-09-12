@@ -1,3 +1,4 @@
+Linux Log
 [2022-09-11 13:27:21.149502] Trained new model: {'Kernel':'linear'} in 12.270571947097778 seconds
 	Score data on [linear] -- mean accuracy on train-data: 0.9921328088539236; execution time: 19.483975648880005s
 	Score data on [linear] -- mean accuracy on test-data: 0.8935574229691877; execution time: 3.2438762187957764s
@@ -22,3 +23,67 @@
 [2022-09-11 13:38:38.079467] Trained new model: {'Kernel':'sigmoid'} in 21.898061513900757 seconds
 	Score data on [sigmoid] -- mean accuracy on train-data: 0.8052536835789053; execution time: 35.47980737686157s
 	Score data on [sigmoid] -- mean accuracy on test-data: 0.7911164465786314; execution time: 5.966899871826172s
+Windows Log
+[2022-09-12 09:28:41.028785] Trained new model: {'Kernel':'linear'} in 12.451658010482788 seconds
+	Score data on [linear] -- mean accuracy on train-data: 0.9921328088539236; execution time: 18.32491374015808s
+	Score data on [linear] -- mean accuracy on test-data: 0.8935574229691877; execution time: 2.720254421234131s
+[2022-09-12 09:29:21.157380] Trained new model: {'Kernel':'poly'} in 19.076491832733154 seconds
+	Score data on [poly] -- mean accuracy on train-data: 0.9893992932862191; execution time: 20.122503757476807s
+	Score data on [poly] -- mean accuracy on test-data: 0.938375350140056; execution time: 3.8141956329345703s
+[2022-09-12 09:30:05.106423] Trained new model: {'Kernel':'rbf'} in 20.004738807678223 seconds
+	Score data on [rbf] -- mean accuracy on train-data: 0.9865324354956997; execution time: 46.90104842185974s
+	Score data on [rbf] -- mean accuracy on test-data: 0.9487795118047219; execution time: 7.432084798812866s
+[2022-09-12 09:31:20.120434] Trained new model: {'Kernel':'sigmoid'} in 20.672041177749634 seconds
+	Score data on [sigmoid] -- mean accuracy on train-data: 0.8052536835789053; execution time: 30.757111310958862s
+	Score data on [sigmoid] -- mean accuracy on test-data: 0.7911164465786314; execution time: 4.937546730041504s
+[2022-09-12 09:37:07.485809] Trained new model: {'Kernel':'linear'} in 12.64892840385437 seconds
+	Score data on [linear] -- mean accuracy on train-data: 0.9921328088539236; execution time: 19.926215171813965s
+	Score data on [linear] -- mean accuracy on test-data: 0.8935574229691877; execution time: 3.279662847518921s
+[2022-09-12 09:37:55.333720] Trained new model: {'Kernel':'poly'} in 24.629643201828003 seconds
+	Score data on [poly] -- mean accuracy on train-data: 0.9893992932862191; execution time: 24.844528436660767s
+	Score data on [poly] -- mean accuracy on test-data: 0.938375350140056; execution time: 4.110708236694336s
+[2022-09-12 09:38:46.503840] Trained new model: {'Kernel':'rbf'} in 22.20300555229187 seconds
+	Score data on [rbf] -- mean accuracy on train-data: 0.9865324354956997; execution time: 57.781997203826904s
+	Score data on [rbf] -- mean accuracy on test-data: 0.9487795118047219; execution time: 7.700808048248291s
+[2022-09-12 09:40:13.968045] Trained new model: {'Kernel':'sigmoid'} in 21.97194242477417 seconds
+	Score data on [sigmoid] -- mean accuracy on train-data: 0.8052536835789053; execution time: 31.320062398910522s
+	Score data on [sigmoid] -- mean accuracy on test-data: 0.7911164465786314; execution time: 4.991046667098999s
+[2022-09-12 09:47:37.260798] Trained new model: {'Kernel':'linear'} in 9.567675590515137 seconds
+	Score data on [linear] -- mean accuracy on train-data: 0.9921328088539236; execution time: 14.651950359344482s
+	Score data on [linear] -- mean accuracy on test-data: 0.8935574229691877; execution time: 2.8219499588012695s
+[2022-09-12 09:48:15.644246] Trained new model: {'Kernel':'poly'} in 20.902591943740845 seconds
+	Score data on [poly] -- mean accuracy on train-data: 0.9893992932862191; execution time: 20.71469211578369s
+	Score data on [poly] -- mean accuracy on test-data: 0.938375350140056; execution time: 3.217411518096924s
+[2022-09-12 09:48:59.550826] Trained new model: {'Kernel':'rbf'} in 19.967366456985474 seconds
+	Score data on [rbf] -- mean accuracy on train-data: 0.9865324354956997; execution time: 54.274770736694336s
+	Score data on [rbf] -- mean accuracy on test-data: 0.9487795118047219; execution time: 9.875313758850098s
+[2022-09-12 09:50:24.753245] Trained new model: {'Kernel':'sigmoid'} in 21.043883323669434 seconds
+	Score data on [sigmoid] -- mean accuracy on train-data: 0.8052536835789053; execution time: 31.808252334594727s
+	Score data on [sigmoid] -- mean accuracy on test-data: 0.7911164465786314; execution time: 5.320147752761841s
+[2022-09-12 09:55:40.502768] Trained new model: {'Kernel':'linear'} in 12.01046872138977 seconds
+	Score data on [linear] -- mean accuracy on train-data: 0.9921328088539236; execution time: 16.30215811729431s
+	Score data on [linear] -- mean accuracy on test-data: 0.8935574229691877; execution time: 2.7443315982818604s
+[2022-09-12 09:56:17.942397] Trained new model: {'Kernel':'poly'} in 18.369510412216187 seconds
+	Score data on [poly] -- mean accuracy on train-data: 0.9893992932862191; execution time: 17.627737998962402s
+	Score data on [poly] -- mean accuracy on test-data: 0.938375350140056; execution time: 3.0374348163604736s
+[2022-09-12 09:56:56.423383] Trained new model: {'Kernel':'rbf'} in 17.805404663085938 seconds
+	Score data on [rbf] -- mean accuracy on train-data: 0.9865324354956997; execution time: 44.02912259101868s
+	Score data on [rbf] -- mean accuracy on test-data: 0.9487795118047219; execution time: 7.088659286499023s
+[2022-09-12 09:58:07.172469] Trained new model: {'Kernel':'sigmoid'} in 19.614917516708374 seconds
+	Score data on [sigmoid] -- mean accuracy on train-data: 0.8052536835789053; execution time: 29.74890160560608s
+	Score data on [sigmoid] -- mean accuracy on test-data: 0.7911164465786314; execution time: 5.11962628364563s
+[2022-09-12 10:29:08.268657] Trained new model: {'Kernel':'linear'} in 10.133047103881836 seconds
+	Score data on [linear] -- mean accuracy on train-data: 0.9921328088539236; execution time: 15.830916404724121s
+	Score data on [linear] -- mean accuracy on test-data: 0.8935574229691877; execution time: 2.8480894565582275s
+[2022-09-12 10:35:58.412871] Trained new model: {'Kernel':'poly'} in 14.438930749893188 seconds
+	Score data on [poly] -- mean accuracy on train-data: 0.9893992932862191; execution time: 15.984026432037354s
+	Score data on [poly] -- mean accuracy on test-data: 0.938375350140056; execution time: 2.9891433715820312s
+[2022-09-12 11:24:30.087815] Trained new model: {'Kernel':'rbf'} in 14.094934701919556 seconds
+	Score data on [rbf] -- mean accuracy on train-data: 0.9865324354956997; execution time: 37.755067348480225s
+	Score data on [rbf] -- mean accuracy on test-data: 0.9487795118047219; execution time: 6.405623435974121s
+[2022-09-12 11:53:51.926655] Trained new model: {'Kernel':'sigmoid'} in 21.714477062225342 seconds
+	Score data on [sigmoid] -- mean accuracy on train-data: 0.8052536835789053; execution time: 32.61363244056702s
+	Score data on [sigmoid] -- mean accuracy on test-data: 0.7911164465786314; execution time: 5.321147918701172s
+[2022-09-12 13:38:13.388806] Trained new model: {'Kernel':'linear'} in 10.553457260131836 seconds
+	Score data on [linear] -- mean accuracy on train-data: 0.9921328088539236; execution time: 16.161457061767578s
+	Score data on [linear] -- mean accuracy on test-data: 0.8935574229691877; execution time: 2.9637086391448975s
