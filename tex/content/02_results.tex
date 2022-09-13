@@ -1,30 +1,98 @@
 \chapter{Results}
+The following results were created over one-fourth of the original test data set size and using default parameters, which are shuffled with several predefined values during hyperparameter search.
+Notably, the displayed values are one of many produced results and may vary from execution to execution. 
+Given the length restriction of the report, one set for exemplary display was deemed sufficient, but please view the latest entries of each respective file in ''log-win'' for additional aggregated results.
 
-The following results have been computed over one-fourth of the original data set size and with default parameters, except for the kernel-type for SVMs and Layer-sizes for Neural Nets, of each package.
+\subsubsection{Support Vector Machines}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|}\hline
+        \multicolumn{1}{|c|}{Kernel} & \multicolumn{1}{|c|}{Accuracy} & \multicolumn{1}{|c|}{Time [s]} \\\hline
+        Linear  & 0.8935574229691877    & 2.556283473968506\\
+        Poly    & 0.938375350140056     & 2.7583091259002686\\
+        RBF     & 0.9487795118047219    & 6.743616104125977\\
+        Sigmoid & 0.7911164465786314    & 4.9489216804504395\\\hline
+    \end{tabular}
+    \caption{Algorithms and their results via default parametrization.}
+    \label{tab:svm_results_fit}
+\end{table}
 
+The Hyperparameter search, via GridSearch, uses 2 parameters in addition to the kernel, namely C and Gamma.
+The C parameter is a trade-off between correctly classifying training examples and maximizing the margin of the decision function. A low C value allows larger margins and thus eases restrictions on the decision function but at the cost of accuracy. A small margin, by using a large C value, can produce better results if the decision function classifies all training points.
+Gamma can be described as a radius of influence around training samples. The higher the value, the smaller the radius for all samples. 
+For more details on these parameters, please \href{https://scikit-learn.org/stable/auto_examples/svm/plot_rbf_parameters.html}{this documentation}.
 
 \begin{table}[H]
     \centering
-    \begin{tabular}{|c|c|c|c|}\hline
-        Algorithm   & PCA-Enabled & Accuracy & Time  \\\hline
-        Linear SVM  & No        & 0.8935574229691877    & 2.54819655418396s \\
-        Linear SVM  & Yes       & 0.101640656262505     & 2.3763396739959717s \\
-        Poly SVM & No           & 0.938375350140056     & 3.057605504989624s \\
-        Poly SVM & Yes          & 0.09683873549419768   & 4.935593128204346s \\
-        RBF SVM & No            & 0.9487795118047219    & 6.784686803817749s \\
-        RBF SVM & Yes           & 0.10004001600640255   & 8.273269176483154s \\
-        Sigmoid SVM & No        & 0.7911164465786314    & 4.3955934047698975s \\
-        Sigmoid SVM & Yes       & 0.10284113645458183   & 3.973496198654175s \\
-        SKLearn MLP & No        & 0.9451780712284914    & 0.005684375762939453s \\
-        SKLearn MLP & Yes       & 0.101640656262505     & 0.008093595504760742s \\
-        Keras Sequential & N/A  & 0.9766651391983032    & 0.6482634544372559 \\\hline
+    \begin{tabular}{|l|l|l|l|}\hline
+        \multicolumn{1}{|c|}{Kernel} & \multicolumn{1}{|c|}{C} & \multicolumn{1}{|c|}{Gamma} & \multicolumn{1}{|c|}{Score} \\\hline
+        Linear      & 1     & 0.01      & 0.9147267755918639 \\
+        Poly        & 100   & 0.005     & 0.9616640213404468 \\
+        RBF         & 50    & 0.01      & 0.9683311325997555 \\
+        Sigmoid     & 100   & 0.0005    & 0.9311945537401357 \\\hline
     \end{tabular}
-    \caption{Algorithms and their results.}
-    \label{tab:results_fit}
+    \caption{Algorithms and their hyperparameter evaluation score.}
+    \label{tab:svm_results_hyperparameter}
+\end{table}
+\subsubsection{Principal Component Analysis and Support Vector Machines}
+The following results utilize principal component analysis in conjunction with support vector machines. 
+PCA is the decomposition of singular values of the data to project it to a lower dimensional space using variance, to improve execution time and accuracy.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|}\hline
+        \multicolumn{1}{|c|}{Kernel} & \multicolumn{1}{|c|}{Accuracy} & \multicolumn{1}{|c|}{Time [s]} \\\hline
+        Linear  & 0.8935574229691877    & 2.47495698928833\\
+        Poly    & 0.9555822328931572    & 4.203923940658569\\
+        RBF     & 0.9551820728291317    & 7.085856199264526\\
+        Sigmoid & 0.8563425370148059    & 3.6313655376434326\\\hline
+    \end{tabular}
+    \caption{Algorithms and their results via default parametrization on PCA-transformed datasets.}
+    \label{tab:svm_pca_results_fit}
+\end{table}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|}\hline
+        \multicolumn{1}{|c|}{Kernel} & \multicolumn{1}{|c|}{C} & \multicolumn{1}{|c|}{Gamma} & \multicolumn{1}{|c|}{Score} \\\hline
+        Linear      & 1     & 0.01      & 0.9147267755918639 \\
+        Poly        & 50    & 0.01      & 0.9719982216294321 \\
+        RBF         & 50    & 0.01      & 0.9683311325997555 \\
+        Sigmoid     & 100   & 0.0005    & 0.9313278870734688 \\\hline
+    \end{tabular}
+    \caption{Algorithms and their hyperparameter evaluation score on PCA-transformed datasets.}
+    \label{tab:svm_pca_results_hyperparameter}
 \end{table}
 
-These values serve as a baseline for further experimentation, in form of hyperparameter estimations.
-Hyperparameter search using GridSearch has suggested the following optimal choice of parameters.
+\subsubsection{Neural Networks}
+The following results were produced by neural network algorithms, using SKLearn and Keras, respectively.
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|}\hline
+        \multicolumn{1}{|c|}{Estimator} & \multicolumn{1}{|c|}{Accuracy} & \multicolumn{1}{|c|}{Time [s]} \\\hline
+        SKLearn-MLP         & 0.9507803121248499 & 0.002245187759399414s \\
+        SKLearn-MLP-PCA     & 0.9307723089235694 & 0.006018638610839844s \\
+        Keras-Sequential    & 0.9347739219665527 & 0.14106178283691406  \\\hline
+    \end{tabular}
+    \caption{Algorithms and their results via default parametrization.}
+    \label{tab:nn_results_fit_pca}
+\end{table}
+
+Additionally, the Hyperparameter search for the SKLearn-MLP algorithm suggested the following optimal choice of parameters.
+For details on the parameters, please refer to \href{https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html}{the official documentation}.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|l|}\hline
+        \multicolumn{1}{|c|}{Estimator} & \multicolumn{1}{|c|}{Act.Fun.} & \multicolumn{1}{|c|}{Alpha} & \multicolumn{1}{|c|}{Layer} & \multicolumn{1}{|c|}{Learn Rate} & \multicolumn{1}{|c|}{Solver} & \multicolumn{1}{|c|}{Score} \\\hline
+        SKLearn-MLP & 'relu' & 0.05 & (784,) & 'adaptive' & 'adam' & 0.9655973324441481 \\       
+        SKLearn-MLP-PCA & 'relu' & 0.05 & (784,) & 'constant' & 'adam' & 0.9673976436589975 \\\hline        
+    \end{tabular}
+    \caption{Algorithms and their hyperparameter evaluation score on PCA-transformed datasets.}
+    \label{tab:nn_results_hyperparameter}
+\end{table}
+
+
+
 
 % TODO as soon as I got the data tomorrow
 % Resulting data

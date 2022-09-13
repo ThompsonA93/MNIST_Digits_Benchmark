@@ -1,13 +1,11 @@
 \chapter{Discussion}
-Surprisingly, the default setup using principal component analysis has significantly worsened the accuracy of every algorithm while not significantly improving the execution time.
-% Analyze and discuss the data from results
-% Explain unexpected results
-%   How did they occur
-% Analyze  strengths and weaknesses of the design 
-% Compare with results to other similar experiments.
-% Analyze potential errors
-% Qs to answer:
-%   What do the results indicate?
-%   What is the significance of the results?
-%   Are there any gaps in knowledge?
-%   Are there any new questions that have been raised?
+The programs and their results are sufficiently satisfactory.
+
+The differences of each kernel are made clear thanks to the hyperparameter evaluation, albeit the outcome of the principal component analysis-supported datasets were surprising.
+In comparison with the simple-reshaped datasets, the accuracy has risen while the time needed has worsened for most cases.
+Given that the main idea of PCA is to explain variances between different data points and dimensions, it may not be optimal to use on the MNIST-Digit dataset which consists only of two-dimensional pixel images.
+On the other hand, the neural networks have performed excellently, with accuracies rivaling that of the SVMs at far faster execution times. 
+
+The results indicate that both, SVMs and neural networks, with and without PCA, are extraordinarily useful algorithms to recognize hand-written digits.
+Overall the neural network performed better in terms of time (SKLearn-MLP: 0.0022s), while SVMs allowed for the highest possible accuracy (Poly-PCA: 0.9719).
+It is noteworthy that there are perhaps far better results achievable, depending on the experimentation of parameters.
