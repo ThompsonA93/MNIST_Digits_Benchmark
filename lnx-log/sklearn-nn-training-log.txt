@@ -1,0 +1,33 @@
+[2022-09-12 22:58:06.685399] on (Linux-5.15.0-46-generic-x86_64-with-glibc2.29, x86_64) using (Train: 15000, Test: 2500)
+Trained new model: {'MLP': {'activation': 'relu', 'alpha': 0.0001, 'epsilon': 1e-08, 'hidden_layer_sizes': (100,)}} in 13.13004755973816 seconds
+	Predicting train data -- execution time: 0.08860278129577637s
+	Predicting test data -- execution time: 0.020959138870239258s
+	[Train-data x {'MLP': {'activation': 'relu', 'alpha': 0.0001, 'epsilon': 1e-08, 'hidden_layer_sizes': (100,)}}] -- mean accuracy: 1.0; execution time: 0.09205245971679688s
+	[Test-data x {'MLP': {'activation': 'relu', 'alpha': 0.0001, 'epsilon': 1e-08, 'hidden_layer_sizes': (100,)}}] -- mean accuracy: 0.9503801520608244; execution time: 0.009005069732666016s
+Trained new model: {'MLP-PCA': {'activation': 'relu', 'alpha': 0.0001, 'epsilon': 1e-08, 'hidden_layer_sizes': (100,)}} in 9.815728664398193 seconds
+	Predicting PCA train data -- execution time: 0.08604955673217773s
+	Predicting PCA test data -- execution time: 0.039061784744262695s
+	[PCA x Train-data x {'MLP-PCA': {'activation': 'relu', 'alpha': 0.0001, 'epsilon': 1e-08, 'hidden_layer_sizes': (100,)}}] -- mean accuracy: 1.0; execution time: 0.07860636711120605s
+	[PCA x Test-data x {'MLP-PCA': {'activation': 'relu', 'alpha': 0.0001, 'epsilon': 1e-08, 'hidden_layer_sizes': (100,)}}] -- mean accuracy: 0.9323729491796718; execution time: 0.020358800888061523s
+[2022-09-12 23:04:07.754794] on (Linux-5.15.0-46-generic-x86_64-with-glibc2.29, x86_64) using (Train: 15000, Test: 2500)
+Trained new model: {'MLP': {'activation': 'relu', 'alpha': 0.0001, 'epsilon': 1e-08, 'hidden_layer_sizes': (100,)}} in 13.538194417953491 seconds
+	Predicting train data -- execution time: 0.08322715759277344s
+	Predicting test data -- execution time: 0.03898048400878906s
+	[Train-data x {'MLP': {'activation': 'relu', 'alpha': 0.0001, 'epsilon': 1e-08, 'hidden_layer_sizes': (100,)}}] -- mean accuracy: 1.0; execution time: 0.0535273551940918s
+	[Test-data x {'MLP': {'activation': 'relu', 'alpha': 0.0001, 'epsilon': 1e-08, 'hidden_layer_sizes': (100,)}}] -- mean accuracy: 0.9483793517406963; execution time: 0.021737337112426758s
+Trained new model: {'MLP-PCA': {'activation': 'relu', 'alpha': 0.0001, 'epsilon': 1e-08, 'hidden_layer_sizes': (100,)}} in 9.046673774719238 seconds
+	Predicting PCA train data -- execution time: 0.12578082084655762s
+	Predicting PCA test data -- execution time: 0.020282745361328125s
+	[PCA x Train-data x {'MLP-PCA': {'activation': 'relu', 'alpha': 0.0001, 'epsilon': 1e-08, 'hidden_layer_sizes': (100,)}}] -- mean accuracy: 1.0; execution time: 0.08368277549743652s
+	[PCA x Test-data x {'MLP-PCA': {'activation': 'relu', 'alpha': 0.0001, 'epsilon': 1e-08, 'hidden_layer_sizes': (100,)}}] -- mean accuracy: 0.9319727891156463; execution time: 0.04236173629760742s
+[2022-09-13 02:29:27.957978] on (Linux-5.15.0-46-generic-x86_64-with-glibc2.29, x86_64) using (Train: 15000, Test: 2500)
+Trained new model: {'MLP': {'activation': 'relu', 'alpha': 0.0001, 'epsilon': 1e-08, 'hidden_layer_sizes': (100,)}} in 14.05368185043335 seconds
+	Predicting train data -- execution time: 0.10164713859558105s
+	Predicting test data -- execution time: 0.006927490234375s
+	[Train-data x {'MLP': {'activation': 'relu', 'alpha': 0.0001, 'epsilon': 1e-08, 'hidden_layer_sizes': (100,)}}] -- mean accuracy: 1.0; execution time: 0.07326388359069824s
+	[Test-data x {'MLP': {'activation': 'relu', 'alpha': 0.0001, 'epsilon': 1e-08, 'hidden_layer_sizes': (100,)}}] -- mean accuracy: 0.9491796718687475; execution time: 0.01738905906677246s
+Trained new model: {'MLP-PCA': {'activation': 'relu', 'alpha': 0.0001, 'epsilon': 1e-08, 'hidden_layer_sizes': (100,)}} in 9.837488889694214 seconds
+	Predicting PCA train data -- execution time: 0.06763887405395508s
+	Predicting PCA test data -- execution time: 0.0072672367095947266s
+	[PCA x Train-data x {'MLP-PCA': {'activation': 'relu', 'alpha': 0.0001, 'epsilon': 1e-08, 'hidden_layer_sizes': (100,)}}] -- mean accuracy: 1.0; execution time: 0.08920574188232422s
+	[PCA x Test-data x {'MLP-PCA': {'activation': 'relu', 'alpha': 0.0001, 'epsilon': 1e-08, 'hidden_layer_sizes': (100,)}}] -- mean accuracy: 0.9323729491796718; execution time: 0.011774778366088867s
