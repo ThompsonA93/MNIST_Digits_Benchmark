@@ -1,0 +1,39 @@
+[2022-09-12 16:20:24.027235] on (Windows-10-10.0.19044-SP0, Intel64 Family 6 Model 140 Stepping 1, GenuineIntel) using (Train: 15000, Test: 2500)
+Trained new model: {'Kernel':'linear'} in 8.38279390335083 seconds
+	[linear]: mean accuracy on train-data: 0.9921328088539236; execution time: 13.280794143676758s
+	[linear]: mean accuracy on test-data: 0.8935574229691877; execution time: 2.3035695552825928s
+Trained new model: {'Kernel':'poly'} in 19.20717477798462 seconds
+	[poly]: mean accuracy on train-data: 0.9893992932862191; execution time: 18.773455381393433s
+	[poly]: mean accuracy on test-data: 0.938375350140056; execution time: 3.2028021812438965s
+Trained new model: {'Kernel':'rbf'} in 16.73939800262451 seconds
+	[rbf]: mean accuracy on train-data: 0.9865324354956997; execution time: 46.382508754730225s
+	[rbf]: mean accuracy on test-data: 0.9487795118047219; execution time: 7.0798234939575195s
+Trained new model: {'Kernel':'sigmoid'} in 18.417804479599 seconds
+	[sigmoid]: mean accuracy on train-data: 0.8052536835789053; execution time: 26.438453435897827s
+	[sigmoid]: mean accuracy on test-data: 0.7911164465786314; execution time: 4.507524251937866s
+[2022-09-12 21:42:12.546575] on (Windows-10-10.0.19044-SP0, Intel64 Family 6 Model 140 Stepping 1, GenuineIntel) using (Train: 15000, Test: 2500)
+Trained new model: {'Kernel':'linear'} in 10.190222024917603 seconds
+	[linear]: mean accuracy on train-data: 0.9921328088539236; execution time: 15.46045708656311s
+	[linear]: mean accuracy on test-data: 0.8935574229691877; execution time: 2.612811803817749s
+Trained new model: {'Kernel':'poly'} in 16.610557079315186 seconds
+	[poly]: mean accuracy on train-data: 0.9893992932862191; execution time: 15.890979051589966s
+	[poly]: mean accuracy on test-data: 0.938375350140056; execution time: 2.6749107837677s
+Trained new model: {'Kernel':'rbf'} in 16.06787657737732 seconds
+	[rbf]: mean accuracy on train-data: 0.9865324354956997; execution time: 39.44321036338806s
+	[rbf]: mean accuracy on test-data: 0.9487795118047219; execution time: 6.743706464767456s
+Trained new model: {'Kernel':'sigmoid'} in 17.344127416610718 seconds
+	[sigmoid]: mean accuracy on train-data: 0.8052536835789053; execution time: 25.607102394104004s
+	[sigmoid]: mean accuracy on test-data: 0.7911164465786314; execution time: 4.210570573806763s
+[2022-09-13 02:59:16.125841] on (Windows-10-10.0.19044-SP0, Intel64 Family 6 Model 140 Stepping 1, GenuineIntel) using (Train: 15000, Test: 2500)
+Trained new model: {'Kernel':'linear'} in 10.350854635238647 seconds
+	[linear]: mean accuracy on train-data: 0.9921328088539236; execution time: 15.250579833984375s
+	[linear]: mean accuracy on test-data: 0.8935574229691877; execution time: 2.556283473968506s
+Trained new model: {'Kernel':'poly'} in 16.400596380233765 seconds
+	[poly]: mean accuracy on train-data: 0.9893992932862191; execution time: 15.836825370788574s
+	[poly]: mean accuracy on test-data: 0.938375350140056; execution time: 2.7583091259002686s
+Trained new model: {'Kernel':'rbf'} in 15.784818410873413 seconds
+	[rbf]: mean accuracy on train-data: 0.9865324354956997; execution time: 38.04835653305054s
+	[rbf]: mean accuracy on test-data: 0.9487795118047219; execution time: 6.743616104125977s
+Trained new model: {'Kernel':'sigmoid'} in 21.737514972686768 seconds
+	[sigmoid]: mean accuracy on train-data: 0.8052536835789053; execution time: 32.88747453689575s
+	[sigmoid]: mean accuracy on test-data: 0.7911164465786314; execution time: 4.9489216804504395s

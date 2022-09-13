@@ -1,0 +1,18 @@
+[2022-09-12 21:42:05.001162] on (Windows-10-10.0.19044-SP0, Intel64 Family 6 Model 140 Stepping 1, GenuineIntel) using (Train: 15000, Test: 2500)
+Trained new model: {'Keras': {}} in 1.6458611488342285 seconds
+	Predicting train data -- execution time: 0.7873718738555908s
+	[{'Keras': {}}] -- Accuracy: 0.9763984084129333; Loss: 0.08576531708240509
+	Predicting test data --  execution time: 0.13433361053466797s
+	[{'Keras': {}}] -- Accuracy: 0.9387755393981934; Loss: 0.206026092171669
+[2022-09-13 02:59:08.421199] on (Windows-10-10.0.19044-SP0, Intel64 Family 6 Model 140 Stepping 1, GenuineIntel) using (Train: 15000, Test: 2500)
+Trained new model: {'Keras': {}} in 1.7531077861785889 seconds
+	Predicting train data -- execution time: 0.7847261428833008s
+	[{'Keras': {}}] -- Accuracy: 0.9769984483718872; Loss: 0.08711583912372589
+	Predicting test data --  execution time: 0.13465380668640137s
+	[{'Keras': {}}] -- Accuracy: 0.9371748566627502; Loss: 0.1999395787715912
+[2022-09-13 08:14:20.122324] on (Windows-10-10.0.19044-SP0, Intel64 Family 6 Model 140 Stepping 1, GenuineIntel) using (Train: 15000, Test: 2500)
+Trained new model: {'Keras': {}} in 1.5528552532196045 seconds
+	Predicting train data -- execution time: 0.7504205703735352s
+	[{'Keras': {}}] -- Accuracy: 0.9748650193214417; Loss: 0.09140703082084656
+	Predicting test data --  execution time: 0.14106178283691406s
+	[{'Keras': {}}] -- Accuracy: 0.9347739219665527; Loss: 0.21655143797397614

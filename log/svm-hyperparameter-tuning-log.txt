@@ -1,0 +1,516 @@
+[2022-09-12 16:20:24.036681] on (Windows-10-10.0.19044-SP0, Intel64 Family 6 Model 140 Stepping 1, GenuineIntel) using (Train: 15000, Test: 2500)
+	--- [2022-09-12 16:20:48.660757] Running Parameter-Tests [LINEAR-SVC] ---
+	Tuning parameters for criteria [accuracy]
+	Best parameters set found on following development set:
+		Support Vector: SVC(C=1, gamma=0.01, kernel='linear')
+		Support Vector Parametrization: {'C': 1, 'gamma': 0.01, 'kernel': 'linear'}
+		Asserted Score: 0.9147267755918639
+Total Score 		 Configurations
+0.915 (+/-0.009)	{'C': 1, 'gamma': 0.01, 'kernel': 'linear'}
+0.915 (+/-0.009)	{'C': 1, 'gamma': 0.005, 'kernel': 'linear'}
+0.915 (+/-0.009)	{'C': 1, 'gamma': 0.001, 'kernel': 'linear'}
+0.915 (+/-0.009)	{'C': 1, 'gamma': 0.0005, 'kernel': 'linear'}
+0.915 (+/-0.009)	{'C': 1, 'gamma': 0.0001, 'kernel': 'linear'}
+0.908 (+/-0.009)	{'C': 10, 'gamma': 0.01, 'kernel': 'linear'}
+0.908 (+/-0.009)	{'C': 10, 'gamma': 0.005, 'kernel': 'linear'}
+0.908 (+/-0.009)	{'C': 10, 'gamma': 0.001, 'kernel': 'linear'}
+0.908 (+/-0.009)	{'C': 10, 'gamma': 0.0005, 'kernel': 'linear'}
+0.908 (+/-0.009)	{'C': 10, 'gamma': 0.0001, 'kernel': 'linear'}
+0.908 (+/-0.009)	{'C': 100, 'gamma': 0.01, 'kernel': 'linear'}
+0.908 (+/-0.009)	{'C': 100, 'gamma': 0.005, 'kernel': 'linear'}
+0.908 (+/-0.009)	{'C': 100, 'gamma': 0.001, 'kernel': 'linear'}
+0.908 (+/-0.009)	{'C': 100, 'gamma': 0.0005, 'kernel': 'linear'}
+0.908 (+/-0.009)	{'C': 100, 'gamma': 0.0001, 'kernel': 'linear'}
+              precision    recall  f1-score   support
+
+         0.0       0.91      0.95      0.93       219
+         1.0       0.96      0.98      0.97       287
+         2.0       0.87      0.89      0.88       276
+         3.0       0.84      0.87      0.85       254
+         4.0       0.91      0.91      0.91       275
+         5.0       0.84      0.84      0.84       221
+         6.0       0.94      0.90      0.92       225
+         7.0       0.92      0.89      0.90       256
+         8.0       0.88      0.83      0.85       242
+         9.0       0.86      0.86      0.86       244
+
+    accuracy                           0.89      2499
+   macro avg       0.89      0.89      0.89      2499
+weighted avg       0.89      0.89      0.89      2499
+
+--- [2022-09-12 16:27:49.888991] Running Parameter-Tests [POLY-SVC] ---
+	Tuning parameters for criteria [accuracy]
+	Best parameters set found on following development set:
+		Support Vector: SVC(C=100, gamma=0.005, kernel='poly')
+		Support Vector Parametrization: {'C': 100, 'gamma': 0.005, 'kernel': 'poly'}
+		Asserted Score: 0.9616640213404468
+Total Score 		 Configurations
+0.948 (+/-0.006)	{'C': 1, 'gamma': 0.01, 'kernel': 'poly'}
+0.886 (+/-0.012)	{'C': 1, 'gamma': 0.005, 'kernel': 'poly'}
+0.128 (+/-0.002)	{'C': 1, 'gamma': 0.001, 'kernel': 'poly'}
+0.113 (+/-0.000)	{'C': 1, 'gamma': 0.0005, 'kernel': 'poly'}
+0.113 (+/-0.000)	{'C': 1, 'gamma': 0.0001, 'kernel': 'poly'}
+0.961 (+/-0.005)	{'C': 10, 'gamma': 0.01, 'kernel': 'poly'}
+0.951 (+/-0.006)	{'C': 10, 'gamma': 0.005, 'kernel': 'poly'}
+0.556 (+/-0.020)	{'C': 10, 'gamma': 0.001, 'kernel': 'poly'}
+0.139 (+/-0.002)	{'C': 10, 'gamma': 0.0005, 'kernel': 'poly'}
+0.113 (+/-0.000)	{'C': 10, 'gamma': 0.0001, 'kernel': 'poly'}
+0.961 (+/-0.005)	{'C': 50, 'gamma': 0.01, 'kernel': 'poly'}
+0.962 (+/-0.004)	{'C': 50, 'gamma': 0.005, 'kernel': 'poly'}
+0.821 (+/-0.018)	{'C': 50, 'gamma': 0.001, 'kernel': 'poly'}
+0.418 (+/-0.010)	{'C': 50, 'gamma': 0.0005, 'kernel': 'poly'}
+0.113 (+/-0.000)	{'C': 50, 'gamma': 0.0001, 'kernel': 'poly'}
+0.961 (+/-0.005)	{'C': 100, 'gamma': 0.01, 'kernel': 'poly'}
+0.962 (+/-0.005)	{'C': 100, 'gamma': 0.005, 'kernel': 'poly'}
+0.874 (+/-0.015)	{'C': 100, 'gamma': 0.001, 'kernel': 'poly'}
+0.615 (+/-0.021)	{'C': 100, 'gamma': 0.0005, 'kernel': 'poly'}
+0.113 (+/-0.000)	{'C': 100, 'gamma': 0.0001, 'kernel': 'poly'}
+              precision    recall  f1-score   support
+
+         0.0       0.93      0.98      0.95       219
+         1.0       0.93      0.99      0.96       287
+         2.0       0.95      0.93      0.94       276
+         3.0       0.93      0.95      0.94       254
+         4.0       0.95      0.96      0.95       275
+         5.0       0.97      0.92      0.94       221
+         6.0       0.95      0.95      0.95       225
+         7.0       0.96      0.91      0.93       256
+         8.0       0.97      0.92      0.95       242
+         9.0       0.93      0.93      0.93       244
+
+    accuracy                           0.94      2499
+   macro avg       0.94      0.94      0.94      2499
+weighted avg       0.94      0.94      0.94      2499
+
+--- [2022-09-12 17:18:46.139418] Running Parameter-Tests [RBF-SVC] ---
+	Tuning parameters for criteria [accuracy]
+	Best parameters set found on following development set:
+		Support Vector: SVC(C=50, gamma=0.01)
+		Support Vector Parametrization: {'C': 50, 'gamma': 0.01, 'kernel': 'rbf'}
+		Asserted Score: 0.9683311325997555
+Total Score 		 Configurations
+0.960 (+/-0.006)	{'C': 1, 'gamma': 0.01, 'kernel': 'rbf'}
+0.946 (+/-0.008)	{'C': 1, 'gamma': 0.005, 'kernel': 'rbf'}
+0.917 (+/-0.008)	{'C': 1, 'gamma': 0.001, 'kernel': 'rbf'}
+0.903 (+/-0.011)	{'C': 1, 'gamma': 0.0005, 'kernel': 'rbf'}
+0.855 (+/-0.012)	{'C': 1, 'gamma': 0.0001, 'kernel': 'rbf'}
+0.968 (+/-0.003)	{'C': 10, 'gamma': 0.01, 'kernel': 'rbf'}
+0.962 (+/-0.004)	{'C': 10, 'gamma': 0.005, 'kernel': 'rbf'}
+0.938 (+/-0.008)	{'C': 10, 'gamma': 0.001, 'kernel': 'rbf'}
+0.931 (+/-0.009)	{'C': 10, 'gamma': 0.0005, 'kernel': 'rbf'}
+0.914 (+/-0.008)	{'C': 10, 'gamma': 0.0001, 'kernel': 'rbf'}
+0.968 (+/-0.004)	{'C': 50, 'gamma': 0.01, 'kernel': 'rbf'}
+0.962 (+/-0.003)	{'C': 50, 'gamma': 0.005, 'kernel': 'rbf'}
+0.946 (+/-0.007)	{'C': 50, 'gamma': 0.001, 'kernel': 'rbf'}
+0.939 (+/-0.009)	{'C': 50, 'gamma': 0.0005, 'kernel': 'rbf'}
+0.927 (+/-0.009)	{'C': 50, 'gamma': 0.0001, 'kernel': 'rbf'}
+0.968 (+/-0.004)	{'C': 100, 'gamma': 0.01, 'kernel': 'rbf'}
+0.962 (+/-0.003)	{'C': 100, 'gamma': 0.005, 'kernel': 'rbf'}
+0.946 (+/-0.007)	{'C': 100, 'gamma': 0.001, 'kernel': 'rbf'}
+0.939 (+/-0.008)	{'C': 100, 'gamma': 0.0005, 'kernel': 'rbf'}
+0.931 (+/-0.009)	{'C': 100, 'gamma': 0.0001, 'kernel': 'rbf'}
+              precision    recall  f1-score   support
+
+         0.0       0.95      0.99      0.97       219
+         1.0       0.96      0.99      0.97       287
+         2.0       0.96      0.95      0.96       276
+         3.0       0.96      0.96      0.96       254
+         4.0       0.96      0.96      0.96       275
+         5.0       0.97      0.94      0.95       221
+         6.0       0.96      0.95      0.95       225
+         7.0       0.95      0.93      0.94       256
+         8.0       0.97      0.95      0.96       242
+         9.0       0.92      0.94      0.93       244
+
+    accuracy                           0.96      2499
+   macro avg       0.96      0.96      0.96      2499
+weighted avg       0.96      0.96      0.96      2499
+
+--- [2022-09-12 17:45:41.543306] Running Parameter-Tests [Sigmoid-SVC] ---
+	Tuning parameters for criteria [accuracy]
+	Best parameters set found on following development set:
+		Support Vector: SVC(C=100, gamma=0.0005, kernel='sigmoid')
+		Support Vector Parametrization: {'C': 100, 'gamma': 0.0005, 'kernel': 'sigmoid'}
+		Asserted Score: 0.9311945537401357
+Total Score 		 Configurations
+0.872 (+/-0.012)	{'C': 1, 'gamma': 0.01, 'kernel': 'sigmoid'}
+0.917 (+/-0.008)	{'C': 1, 'gamma': 0.005, 'kernel': 'sigmoid'}
+0.902 (+/-0.011)	{'C': 1, 'gamma': 0.001, 'kernel': 'sigmoid'}
+0.888 (+/-0.013)	{'C': 1, 'gamma': 0.0005, 'kernel': 'sigmoid'}
+0.801 (+/-0.012)	{'C': 1, 'gamma': 0.0001, 'kernel': 'sigmoid'}
+0.820 (+/-0.013)	{'C': 10, 'gamma': 0.01, 'kernel': 'sigmoid'}
+0.907 (+/-0.012)	{'C': 10, 'gamma': 0.005, 'kernel': 'sigmoid'}
+0.927 (+/-0.009)	{'C': 10, 'gamma': 0.001, 'kernel': 'sigmoid'}
+0.923 (+/-0.009)	{'C': 10, 'gamma': 0.0005, 'kernel': 'sigmoid'}
+0.902 (+/-0.011)	{'C': 10, 'gamma': 0.0001, 'kernel': 'sigmoid'}
+0.810 (+/-0.013)	{'C': 50, 'gamma': 0.01, 'kernel': 'sigmoid'}
+0.877 (+/-0.010)	{'C': 50, 'gamma': 0.005, 'kernel': 'sigmoid'}
+0.930 (+/-0.009)	{'C': 50, 'gamma': 0.001, 'kernel': 'sigmoid'}
+0.930 (+/-0.009)	{'C': 50, 'gamma': 0.0005, 'kernel': 'sigmoid'}
+0.923 (+/-0.009)	{'C': 50, 'gamma': 0.0001, 'kernel': 'sigmoid'}
+0.807 (+/-0.013)	{'C': 100, 'gamma': 0.01, 'kernel': 'sigmoid'}
+0.866 (+/-0.014)	{'C': 100, 'gamma': 0.005, 'kernel': 'sigmoid'}
+0.930 (+/-0.009)	{'C': 100, 'gamma': 0.001, 'kernel': 'sigmoid'}
+0.931 (+/-0.009)	{'C': 100, 'gamma': 0.0005, 'kernel': 'sigmoid'}
+0.927 (+/-0.009)	{'C': 100, 'gamma': 0.0001, 'kernel': 'sigmoid'}
+              precision    recall  f1-score   support
+
+         0.0       0.93      0.98      0.95       219
+         1.0       0.95      0.99      0.97       287
+         2.0       0.90      0.90      0.90       276
+         3.0       0.88      0.88      0.88       254
+         4.0       0.94      0.92      0.93       275
+         5.0       0.87      0.86      0.87       221
+         6.0       0.93      0.92      0.93       225
+         7.0       0.93      0.89      0.91       256
+         8.0       0.89      0.83      0.86       242
+         9.0       0.86      0.89      0.88       244
+
+    accuracy                           0.91      2499
+   macro avg       0.91      0.91      0.91      2499
+weighted avg       0.91      0.91      0.91      2499
+
+[2022-09-12 21:42:12.546575] on (Windows-10-10.0.19044-SP0, Intel64 Family 6 Model 140 Stepping 1, GenuineIntel) using (Train: 15000, Test: 2500)
+	--- [2022-09-12 21:42:41.563982] Running Parameter-Tests [LINEAR-SVC] ---
+	Tuning parameters for criteria [accuracy]
+	Best parameters set found on following development set:
+		Support Vector: SVC(C=1, gamma=0.01, kernel='linear')
+		Support Vector Parametrization: {'C': 1, 'gamma': 0.01, 'kernel': 'linear'}
+		Asserted Score: 0.9147267755918639
+Total Score 		 Configurations
+0.915 (+/-0.009)	{'C': 1, 'gamma': 0.01, 'kernel': 'linear'}
+0.915 (+/-0.009)	{'C': 1, 'gamma': 0.005, 'kernel': 'linear'}
+0.915 (+/-0.009)	{'C': 1, 'gamma': 0.001, 'kernel': 'linear'}
+0.915 (+/-0.009)	{'C': 1, 'gamma': 0.0005, 'kernel': 'linear'}
+0.915 (+/-0.009)	{'C': 1, 'gamma': 0.0001, 'kernel': 'linear'}
+0.908 (+/-0.009)	{'C': 10, 'gamma': 0.01, 'kernel': 'linear'}
+0.908 (+/-0.009)	{'C': 10, 'gamma': 0.005, 'kernel': 'linear'}
+0.908 (+/-0.009)	{'C': 10, 'gamma': 0.001, 'kernel': 'linear'}
+0.908 (+/-0.009)	{'C': 10, 'gamma': 0.0005, 'kernel': 'linear'}
+0.908 (+/-0.009)	{'C': 10, 'gamma': 0.0001, 'kernel': 'linear'}
+0.908 (+/-0.009)	{'C': 100, 'gamma': 0.01, 'kernel': 'linear'}
+0.908 (+/-0.009)	{'C': 100, 'gamma': 0.005, 'kernel': 'linear'}
+0.908 (+/-0.009)	{'C': 100, 'gamma': 0.001, 'kernel': 'linear'}
+0.908 (+/-0.009)	{'C': 100, 'gamma': 0.0005, 'kernel': 'linear'}
+0.908 (+/-0.009)	{'C': 100, 'gamma': 0.0001, 'kernel': 'linear'}
+              precision    recall  f1-score   support
+
+         0.0       0.91      0.95      0.93       219
+         1.0       0.96      0.98      0.97       287
+         2.0       0.87      0.89      0.88       276
+         3.0       0.84      0.87      0.85       254
+         4.0       0.91      0.91      0.91       275
+         5.0       0.84      0.84      0.84       221
+         6.0       0.94      0.90      0.92       225
+         7.0       0.92      0.89      0.90       256
+         8.0       0.88      0.83      0.85       242
+         9.0       0.86      0.86      0.86       244
+
+    accuracy                           0.89      2499
+   macro avg       0.89      0.89      0.89      2499
+weighted avg       0.89      0.89      0.89      2499
+
+--- [2022-09-12 21:49:19.681464] Running Parameter-Tests [POLY-SVC] ---
+	Tuning parameters for criteria [accuracy]
+	Best parameters set found on following development set:
+		Support Vector: SVC(C=100, gamma=0.005, kernel='poly')
+		Support Vector Parametrization: {'C': 100, 'gamma': 0.005, 'kernel': 'poly'}
+		Asserted Score: 0.9616640213404468
+Total Score 		 Configurations
+0.948 (+/-0.006)	{'C': 1, 'gamma': 0.01, 'kernel': 'poly'}
+0.886 (+/-0.012)	{'C': 1, 'gamma': 0.005, 'kernel': 'poly'}
+0.128 (+/-0.002)	{'C': 1, 'gamma': 0.001, 'kernel': 'poly'}
+0.113 (+/-0.000)	{'C': 1, 'gamma': 0.0005, 'kernel': 'poly'}
+0.113 (+/-0.000)	{'C': 1, 'gamma': 0.0001, 'kernel': 'poly'}
+0.961 (+/-0.005)	{'C': 10, 'gamma': 0.01, 'kernel': 'poly'}
+0.951 (+/-0.006)	{'C': 10, 'gamma': 0.005, 'kernel': 'poly'}
+0.556 (+/-0.020)	{'C': 10, 'gamma': 0.001, 'kernel': 'poly'}
+0.139 (+/-0.002)	{'C': 10, 'gamma': 0.0005, 'kernel': 'poly'}
+0.113 (+/-0.000)	{'C': 10, 'gamma': 0.0001, 'kernel': 'poly'}
+0.961 (+/-0.005)	{'C': 50, 'gamma': 0.01, 'kernel': 'poly'}
+0.962 (+/-0.004)	{'C': 50, 'gamma': 0.005, 'kernel': 'poly'}
+0.821 (+/-0.018)	{'C': 50, 'gamma': 0.001, 'kernel': 'poly'}
+0.418 (+/-0.010)	{'C': 50, 'gamma': 0.0005, 'kernel': 'poly'}
+0.113 (+/-0.000)	{'C': 50, 'gamma': 0.0001, 'kernel': 'poly'}
+0.961 (+/-0.005)	{'C': 100, 'gamma': 0.01, 'kernel': 'poly'}
+0.962 (+/-0.005)	{'C': 100, 'gamma': 0.005, 'kernel': 'poly'}
+0.874 (+/-0.015)	{'C': 100, 'gamma': 0.001, 'kernel': 'poly'}
+0.615 (+/-0.021)	{'C': 100, 'gamma': 0.0005, 'kernel': 'poly'}
+0.113 (+/-0.000)	{'C': 100, 'gamma': 0.0001, 'kernel': 'poly'}
+              precision    recall  f1-score   support
+
+         0.0       0.93      0.98      0.95       219
+         1.0       0.93      0.99      0.96       287
+         2.0       0.95      0.93      0.94       276
+         3.0       0.93      0.95      0.94       254
+         4.0       0.95      0.96      0.95       275
+         5.0       0.97      0.92      0.94       221
+         6.0       0.95      0.95      0.95       225
+         7.0       0.96      0.91      0.93       256
+         8.0       0.97      0.92      0.95       242
+         9.0       0.93      0.93      0.93       244
+
+    accuracy                           0.94      2499
+   macro avg       0.94      0.94      0.94      2499
+weighted avg       0.94      0.94      0.94      2499
+
+--- [2022-09-12 22:38:51.813321] Running Parameter-Tests [RBF-SVC] ---
+	Tuning parameters for criteria [accuracy]
+	Best parameters set found on following development set:
+		Support Vector: SVC(C=50, gamma=0.01)
+		Support Vector Parametrization: {'C': 50, 'gamma': 0.01, 'kernel': 'rbf'}
+		Asserted Score: 0.9683311325997555
+Total Score 		 Configurations
+0.960 (+/-0.006)	{'C': 1, 'gamma': 0.01, 'kernel': 'rbf'}
+0.946 (+/-0.008)	{'C': 1, 'gamma': 0.005, 'kernel': 'rbf'}
+0.917 (+/-0.008)	{'C': 1, 'gamma': 0.001, 'kernel': 'rbf'}
+0.903 (+/-0.011)	{'C': 1, 'gamma': 0.0005, 'kernel': 'rbf'}
+0.855 (+/-0.012)	{'C': 1, 'gamma': 0.0001, 'kernel': 'rbf'}
+0.968 (+/-0.003)	{'C': 10, 'gamma': 0.01, 'kernel': 'rbf'}
+0.962 (+/-0.004)	{'C': 10, 'gamma': 0.005, 'kernel': 'rbf'}
+0.938 (+/-0.008)	{'C': 10, 'gamma': 0.001, 'kernel': 'rbf'}
+0.931 (+/-0.009)	{'C': 10, 'gamma': 0.0005, 'kernel': 'rbf'}
+0.914 (+/-0.008)	{'C': 10, 'gamma': 0.0001, 'kernel': 'rbf'}
+0.968 (+/-0.004)	{'C': 50, 'gamma': 0.01, 'kernel': 'rbf'}
+0.962 (+/-0.003)	{'C': 50, 'gamma': 0.005, 'kernel': 'rbf'}
+0.946 (+/-0.007)	{'C': 50, 'gamma': 0.001, 'kernel': 'rbf'}
+0.939 (+/-0.009)	{'C': 50, 'gamma': 0.0005, 'kernel': 'rbf'}
+0.927 (+/-0.009)	{'C': 50, 'gamma': 0.0001, 'kernel': 'rbf'}
+0.968 (+/-0.004)	{'C': 100, 'gamma': 0.01, 'kernel': 'rbf'}
+0.962 (+/-0.003)	{'C': 100, 'gamma': 0.005, 'kernel': 'rbf'}
+0.946 (+/-0.007)	{'C': 100, 'gamma': 0.001, 'kernel': 'rbf'}
+0.939 (+/-0.008)	{'C': 100, 'gamma': 0.0005, 'kernel': 'rbf'}
+0.931 (+/-0.009)	{'C': 100, 'gamma': 0.0001, 'kernel': 'rbf'}
+              precision    recall  f1-score   support
+
+         0.0       0.95      0.99      0.97       219
+         1.0       0.96      0.99      0.97       287
+         2.0       0.96      0.95      0.96       276
+         3.0       0.96      0.96      0.96       254
+         4.0       0.96      0.96      0.96       275
+         5.0       0.97      0.94      0.95       221
+         6.0       0.96      0.95      0.95       225
+         7.0       0.95      0.93      0.94       256
+         8.0       0.97      0.95      0.96       242
+         9.0       0.92      0.94      0.93       244
+
+    accuracy                           0.96      2499
+   macro avg       0.96      0.96      0.96      2499
+weighted avg       0.96      0.96      0.96      2499
+
+--- [2022-09-12 23:05:38.979954] Running Parameter-Tests [Sigmoid-SVC] ---
+	Tuning parameters for criteria [accuracy]
+	Best parameters set found on following development set:
+		Support Vector: SVC(C=100, gamma=0.0005, kernel='sigmoid')
+		Support Vector Parametrization: {'C': 100, 'gamma': 0.0005, 'kernel': 'sigmoid'}
+		Asserted Score: 0.9311945537401357
+Total Score 		 Configurations
+0.872 (+/-0.012)	{'C': 1, 'gamma': 0.01, 'kernel': 'sigmoid'}
+0.917 (+/-0.008)	{'C': 1, 'gamma': 0.005, 'kernel': 'sigmoid'}
+0.902 (+/-0.011)	{'C': 1, 'gamma': 0.001, 'kernel': 'sigmoid'}
+0.888 (+/-0.013)	{'C': 1, 'gamma': 0.0005, 'kernel': 'sigmoid'}
+0.801 (+/-0.012)	{'C': 1, 'gamma': 0.0001, 'kernel': 'sigmoid'}
+0.820 (+/-0.013)	{'C': 10, 'gamma': 0.01, 'kernel': 'sigmoid'}
+0.907 (+/-0.012)	{'C': 10, 'gamma': 0.005, 'kernel': 'sigmoid'}
+0.927 (+/-0.009)	{'C': 10, 'gamma': 0.001, 'kernel': 'sigmoid'}
+0.923 (+/-0.009)	{'C': 10, 'gamma': 0.0005, 'kernel': 'sigmoid'}
+0.902 (+/-0.011)	{'C': 10, 'gamma': 0.0001, 'kernel': 'sigmoid'}
+0.810 (+/-0.013)	{'C': 50, 'gamma': 0.01, 'kernel': 'sigmoid'}
+0.877 (+/-0.010)	{'C': 50, 'gamma': 0.005, 'kernel': 'sigmoid'}
+0.930 (+/-0.009)	{'C': 50, 'gamma': 0.001, 'kernel': 'sigmoid'}
+0.930 (+/-0.009)	{'C': 50, 'gamma': 0.0005, 'kernel': 'sigmoid'}
+0.923 (+/-0.009)	{'C': 50, 'gamma': 0.0001, 'kernel': 'sigmoid'}
+0.807 (+/-0.013)	{'C': 100, 'gamma': 0.01, 'kernel': 'sigmoid'}
+0.866 (+/-0.014)	{'C': 100, 'gamma': 0.005, 'kernel': 'sigmoid'}
+0.930 (+/-0.009)	{'C': 100, 'gamma': 0.001, 'kernel': 'sigmoid'}
+0.931 (+/-0.009)	{'C': 100, 'gamma': 0.0005, 'kernel': 'sigmoid'}
+0.927 (+/-0.009)	{'C': 100, 'gamma': 0.0001, 'kernel': 'sigmoid'}
+              precision    recall  f1-score   support
+
+         0.0       0.93      0.98      0.95       219
+         1.0       0.95      0.99      0.97       287
+         2.0       0.90      0.90      0.90       276
+         3.0       0.88      0.88      0.88       254
+         4.0       0.94      0.92      0.93       275
+         5.0       0.87      0.86      0.87       221
+         6.0       0.93      0.92      0.93       225
+         7.0       0.93      0.89      0.91       256
+         8.0       0.89      0.83      0.86       242
+         9.0       0.86      0.89      0.88       244
+
+    accuracy                           0.91      2499
+   macro avg       0.91      0.91      0.91      2499
+weighted avg       0.91      0.91      0.91      2499
+
+[2022-09-13 02:59:16.127219] on (Windows-10-10.0.19044-SP0, Intel64 Family 6 Model 140 Stepping 1, GenuineIntel) using (Train: 15000, Test: 2500)
+	--- [2022-09-13 02:59:45.044833] Running Parameter-Tests [LINEAR-SVC] ---
+	Tuning parameters for criteria [accuracy]
+	Best parameters set found on following development set:
+		Support Vector: SVC(C=1, gamma=0.01, kernel='linear')
+		Support Vector Parametrization: {'C': 1, 'gamma': 0.01, 'kernel': 'linear'}
+		Asserted Score: 0.9147267755918639
+Total Score 		 Configurations
+0.915 (+/-0.009)	{'C': 1, 'gamma': 0.01, 'kernel': 'linear'}
+0.915 (+/-0.009)	{'C': 1, 'gamma': 0.005, 'kernel': 'linear'}
+0.915 (+/-0.009)	{'C': 1, 'gamma': 0.001, 'kernel': 'linear'}
+0.915 (+/-0.009)	{'C': 1, 'gamma': 0.0005, 'kernel': 'linear'}
+0.915 (+/-0.009)	{'C': 1, 'gamma': 0.0001, 'kernel': 'linear'}
+0.908 (+/-0.009)	{'C': 10, 'gamma': 0.01, 'kernel': 'linear'}
+0.908 (+/-0.009)	{'C': 10, 'gamma': 0.005, 'kernel': 'linear'}
+0.908 (+/-0.009)	{'C': 10, 'gamma': 0.001, 'kernel': 'linear'}
+0.908 (+/-0.009)	{'C': 10, 'gamma': 0.0005, 'kernel': 'linear'}
+0.908 (+/-0.009)	{'C': 10, 'gamma': 0.0001, 'kernel': 'linear'}
+0.908 (+/-0.009)	{'C': 100, 'gamma': 0.01, 'kernel': 'linear'}
+0.908 (+/-0.009)	{'C': 100, 'gamma': 0.005, 'kernel': 'linear'}
+0.908 (+/-0.009)	{'C': 100, 'gamma': 0.001, 'kernel': 'linear'}
+0.908 (+/-0.009)	{'C': 100, 'gamma': 0.0005, 'kernel': 'linear'}
+0.908 (+/-0.009)	{'C': 100, 'gamma': 0.0001, 'kernel': 'linear'}
+              precision    recall  f1-score   support
+
+         0.0       0.91      0.95      0.93       219
+         1.0       0.96      0.98      0.97       287
+         2.0       0.87      0.89      0.88       276
+         3.0       0.84      0.87      0.85       254
+         4.0       0.91      0.91      0.91       275
+         5.0       0.84      0.84      0.84       221
+         6.0       0.94      0.90      0.92       225
+         7.0       0.92      0.89      0.90       256
+         8.0       0.88      0.83      0.85       242
+         9.0       0.86      0.86      0.86       244
+
+    accuracy                           0.89      2499
+   macro avg       0.89      0.89      0.89      2499
+weighted avg       0.89      0.89      0.89      2499
+
+--- [2022-09-13 03:06:14.674512] Running Parameter-Tests [POLY-SVC] ---
+	Tuning parameters for criteria [accuracy]
+	Best parameters set found on following development set:
+		Support Vector: SVC(C=100, gamma=0.005, kernel='poly')
+		Support Vector Parametrization: {'C': 100, 'gamma': 0.005, 'kernel': 'poly'}
+		Asserted Score: 0.9616640213404468
+Total Score 		 Configurations
+0.948 (+/-0.006)	{'C': 1, 'gamma': 0.01, 'kernel': 'poly'}
+0.886 (+/-0.012)	{'C': 1, 'gamma': 0.005, 'kernel': 'poly'}
+0.128 (+/-0.002)	{'C': 1, 'gamma': 0.001, 'kernel': 'poly'}
+0.113 (+/-0.000)	{'C': 1, 'gamma': 0.0005, 'kernel': 'poly'}
+0.113 (+/-0.000)	{'C': 1, 'gamma': 0.0001, 'kernel': 'poly'}
+0.961 (+/-0.005)	{'C': 10, 'gamma': 0.01, 'kernel': 'poly'}
+0.951 (+/-0.006)	{'C': 10, 'gamma': 0.005, 'kernel': 'poly'}
+0.556 (+/-0.020)	{'C': 10, 'gamma': 0.001, 'kernel': 'poly'}
+0.139 (+/-0.002)	{'C': 10, 'gamma': 0.0005, 'kernel': 'poly'}
+0.113 (+/-0.000)	{'C': 10, 'gamma': 0.0001, 'kernel': 'poly'}
+0.961 (+/-0.005)	{'C': 50, 'gamma': 0.01, 'kernel': 'poly'}
+0.962 (+/-0.004)	{'C': 50, 'gamma': 0.005, 'kernel': 'poly'}
+0.821 (+/-0.018)	{'C': 50, 'gamma': 0.001, 'kernel': 'poly'}
+0.418 (+/-0.010)	{'C': 50, 'gamma': 0.0005, 'kernel': 'poly'}
+0.113 (+/-0.000)	{'C': 50, 'gamma': 0.0001, 'kernel': 'poly'}
+0.961 (+/-0.005)	{'C': 100, 'gamma': 0.01, 'kernel': 'poly'}
+0.962 (+/-0.005)	{'C': 100, 'gamma': 0.005, 'kernel': 'poly'}
+0.874 (+/-0.015)	{'C': 100, 'gamma': 0.001, 'kernel': 'poly'}
+0.615 (+/-0.021)	{'C': 100, 'gamma': 0.0005, 'kernel': 'poly'}
+0.113 (+/-0.000)	{'C': 100, 'gamma': 0.0001, 'kernel': 'poly'}
+              precision    recall  f1-score   support
+
+         0.0       0.93      0.98      0.95       219
+         1.0       0.93      0.99      0.96       287
+         2.0       0.95      0.93      0.94       276
+         3.0       0.93      0.95      0.94       254
+         4.0       0.95      0.96      0.95       275
+         5.0       0.97      0.92      0.94       221
+         6.0       0.95      0.95      0.95       225
+         7.0       0.96      0.91      0.93       256
+         8.0       0.97      0.92      0.95       242
+         9.0       0.93      0.93      0.93       244
+
+    accuracy                           0.94      2499
+   macro avg       0.94      0.94      0.94      2499
+weighted avg       0.94      0.94      0.94      2499
+
+--- [2022-09-13 03:55:24.426963] Running Parameter-Tests [RBF-SVC] ---
+	Tuning parameters for criteria [accuracy]
+	Best parameters set found on following development set:
+		Support Vector: SVC(C=50, gamma=0.01)
+		Support Vector Parametrization: {'C': 50, 'gamma': 0.01, 'kernel': 'rbf'}
+		Asserted Score: 0.9683311325997555
+Total Score 		 Configurations
+0.960 (+/-0.006)	{'C': 1, 'gamma': 0.01, 'kernel': 'rbf'}
+0.946 (+/-0.008)	{'C': 1, 'gamma': 0.005, 'kernel': 'rbf'}
+0.917 (+/-0.008)	{'C': 1, 'gamma': 0.001, 'kernel': 'rbf'}
+0.903 (+/-0.011)	{'C': 1, 'gamma': 0.0005, 'kernel': 'rbf'}
+0.855 (+/-0.012)	{'C': 1, 'gamma': 0.0001, 'kernel': 'rbf'}
+0.968 (+/-0.003)	{'C': 10, 'gamma': 0.01, 'kernel': 'rbf'}
+0.962 (+/-0.004)	{'C': 10, 'gamma': 0.005, 'kernel': 'rbf'}
+0.938 (+/-0.008)	{'C': 10, 'gamma': 0.001, 'kernel': 'rbf'}
+0.931 (+/-0.009)	{'C': 10, 'gamma': 0.0005, 'kernel': 'rbf'}
+0.914 (+/-0.008)	{'C': 10, 'gamma': 0.0001, 'kernel': 'rbf'}
+0.968 (+/-0.004)	{'C': 50, 'gamma': 0.01, 'kernel': 'rbf'}
+0.962 (+/-0.003)	{'C': 50, 'gamma': 0.005, 'kernel': 'rbf'}
+0.946 (+/-0.007)	{'C': 50, 'gamma': 0.001, 'kernel': 'rbf'}
+0.939 (+/-0.009)	{'C': 50, 'gamma': 0.0005, 'kernel': 'rbf'}
+0.927 (+/-0.009)	{'C': 50, 'gamma': 0.0001, 'kernel': 'rbf'}
+0.968 (+/-0.004)	{'C': 100, 'gamma': 0.01, 'kernel': 'rbf'}
+0.962 (+/-0.003)	{'C': 100, 'gamma': 0.005, 'kernel': 'rbf'}
+0.946 (+/-0.007)	{'C': 100, 'gamma': 0.001, 'kernel': 'rbf'}
+0.939 (+/-0.008)	{'C': 100, 'gamma': 0.0005, 'kernel': 'rbf'}
+0.931 (+/-0.009)	{'C': 100, 'gamma': 0.0001, 'kernel': 'rbf'}
+              precision    recall  f1-score   support
+
+         0.0       0.95      0.99      0.97       219
+         1.0       0.96      0.99      0.97       287
+         2.0       0.96      0.95      0.96       276
+         3.0       0.96      0.96      0.96       254
+         4.0       0.96      0.96      0.96       275
+         5.0       0.97      0.94      0.95       221
+         6.0       0.96      0.95      0.95       225
+         7.0       0.95      0.93      0.94       256
+         8.0       0.97      0.95      0.96       242
+         9.0       0.92      0.94      0.93       244
+
+    accuracy                           0.96      2499
+   macro avg       0.96      0.96      0.96      2499
+weighted avg       0.96      0.96      0.96      2499
+
+--- [2022-09-13 04:22:40.497470] Running Parameter-Tests [Sigmoid-SVC] ---
+	Tuning parameters for criteria [accuracy]
+	Best parameters set found on following development set:
+		Support Vector: SVC(C=100, gamma=0.0005, kernel='sigmoid')
+		Support Vector Parametrization: {'C': 100, 'gamma': 0.0005, 'kernel': 'sigmoid'}
+		Asserted Score: 0.9311945537401357
+Total Score 		 Configurations
+0.872 (+/-0.012)	{'C': 1, 'gamma': 0.01, 'kernel': 'sigmoid'}
+0.917 (+/-0.008)	{'C': 1, 'gamma': 0.005, 'kernel': 'sigmoid'}
+0.902 (+/-0.011)	{'C': 1, 'gamma': 0.001, 'kernel': 'sigmoid'}
+0.888 (+/-0.013)	{'C': 1, 'gamma': 0.0005, 'kernel': 'sigmoid'}
+0.801 (+/-0.012)	{'C': 1, 'gamma': 0.0001, 'kernel': 'sigmoid'}
+0.820 (+/-0.013)	{'C': 10, 'gamma': 0.01, 'kernel': 'sigmoid'}
+0.907 (+/-0.012)	{'C': 10, 'gamma': 0.005, 'kernel': 'sigmoid'}
+0.927 (+/-0.009)	{'C': 10, 'gamma': 0.001, 'kernel': 'sigmoid'}
+0.923 (+/-0.009)	{'C': 10, 'gamma': 0.0005, 'kernel': 'sigmoid'}
+0.902 (+/-0.011)	{'C': 10, 'gamma': 0.0001, 'kernel': 'sigmoid'}
+0.810 (+/-0.013)	{'C': 50, 'gamma': 0.01, 'kernel': 'sigmoid'}
+0.877 (+/-0.010)	{'C': 50, 'gamma': 0.005, 'kernel': 'sigmoid'}
+0.930 (+/-0.009)	{'C': 50, 'gamma': 0.001, 'kernel': 'sigmoid'}
+0.930 (+/-0.009)	{'C': 50, 'gamma': 0.0005, 'kernel': 'sigmoid'}
+0.923 (+/-0.009)	{'C': 50, 'gamma': 0.0001, 'kernel': 'sigmoid'}
+0.807 (+/-0.013)	{'C': 100, 'gamma': 0.01, 'kernel': 'sigmoid'}
+0.866 (+/-0.014)	{'C': 100, 'gamma': 0.005, 'kernel': 'sigmoid'}
+0.930 (+/-0.009)	{'C': 100, 'gamma': 0.001, 'kernel': 'sigmoid'}
+0.931 (+/-0.009)	{'C': 100, 'gamma': 0.0005, 'kernel': 'sigmoid'}
+0.927 (+/-0.009)	{'C': 100, 'gamma': 0.0001, 'kernel': 'sigmoid'}
+              precision    recall  f1-score   support
+
+         0.0       0.93      0.98      0.95       219
+         1.0       0.95      0.99      0.97       287
+         2.0       0.90      0.90      0.90       276
+         3.0       0.88      0.88      0.88       254
+         4.0       0.94      0.92      0.93       275
+         5.0       0.87      0.86      0.87       221
+         6.0       0.93      0.92      0.93       225
+         7.0       0.93      0.89      0.91       256
+         8.0       0.89      0.83      0.86       242
+         9.0       0.86      0.89      0.88       244
+
+    accuracy                           0.91      2499
+   macro avg       0.91      0.91      0.91      2499
+weighted avg       0.91      0.91      0.91      2499
+
